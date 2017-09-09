@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Kjkm"> 
+
+
+	<resultMap id="Kjkm" type="com.huolong.xtsz.model.Kjkm">
+		<result property="id" column="id"/>
+		<result property="version" column="version"/>
+		<result property="kmbh" column="kmbh"/>
+		<result property="kmmc" column="kmmc"/>
+		<result property="kmfx" column="kmfx"/>
+		<result property="kmjc" column="kmjc"/>
+		<result property="kmlx" column="kmlx"/>
+		<result property="kmwz" column="kmwz"/>
+		<result property="kmmx" column="kmmx"/>
+		<result property="wbhs" column="wbhs"/>
+		<result property="sljehs" column="sljehs"/>
+		<result property="csh" column="csh"/>
+		<association property="flkjkm" column="flkjkm" select="Kjkm.select_inner_Kjkm"/>
+		<association property="fzhs" column="fzhs" select="Fzhs.select_inner_Fzhs"/>
+		<association property="orgs" column="orgs" select="HiOrg.select_inner_HiOrg"/>
+		<association property="creator" column="creator" select="HiUser.select_inner_HiUser"/>
+	</resultMap>
+    
+    <select id="select_inner_Kjkm" resultMap="Kjkm" parameterType="int">  
+       SELECT * FROM Kjkm  WHERE id = #{value}
+    </select>
+  
+	<select id="getKjkm" resultMap="Kjkm">
+		select * from Kjkm WHERE id = #{id}
+	</select>
+	<select id="listKjkm" resultMap="Kjkm">#</select>
+  
+	<select id="countKjkm" resultType="int">#</select> 
+	
+	<insert id="insKjkm" parameterType="java.util.HashMap">    
+    	insert into Kjkm (id, version, kmbh, kmmc, kmfx, kmjc, kmlx, kmwz, kmmx, flkjkm, wbhs, sljehs, csh, fzhs, orgs, creator) 
+		values (#{id,jdbcType=NUMERIC}, 1, #{kmbh,jdbcType=LONGVARCHAR}, #{kmmc,jdbcType=LONGVARCHAR}, #{kmfx,jdbcType=NUMERIC}, #{kmjc,jdbcType=LONGVARCHAR}, #{kmlx,jdbcType=NUMERIC}, #{kmwz,jdbcType=LONGVARCHAR}, #{kmmx,jdbcType=NUMERIC}, #{flkjkm,jdbcType=NUMERIC}, #{wbhs,jdbcType=NUMERIC}, #{sljehs,jdbcType=NUMERIC}, #{csh,jdbcType=NUMERIC}, #{fzhs,jdbcType=NUMERIC}, #{orgs,jdbcType=NUMERIC}, #{creator,jdbcType=NUMERIC})
+		<selectKey resultType="int"  keyProperty="id"/>   
+	</insert>
+	
+	<update id="updateKjkm" parameterType="java.util.HashMap">
+		update Kjkm set
+            version = #{version} +1,
+			kmbh = #{kmbh,jdbcType=LONGVARCHAR},
+			kmmc = #{kmmc,jdbcType=LONGVARCHAR},
+			kmfx = #{kmfx,jdbcType=NUMERIC},
+			kmjc = #{kmjc,jdbcType=LONGVARCHAR},
+			kmlx = #{kmlx,jdbcType=NUMERIC},
+			kmwz = #{kmwz,jdbcType=LONGVARCHAR},
+			kmmx = #{kmmx,jdbcType=NUMERIC},
+			flkjkm = #{flkjkm,jdbcType=NUMERIC},
+			wbhs = #{wbhs,jdbcType=NUMERIC},
+			sljehs = #{sljehs,jdbcType=NUMERIC},
+			csh = #{csh,jdbcType=NUMERIC},
+			fzhs = #{fzhs,jdbcType=NUMERIC},
+			orgs = #{orgs,jdbcType=NUMERIC},
+			creator = #{creator,jdbcType=NUMERIC}
+    where    
+      id = #{id}    
+	</update>    
+   
+	<delete id="delKjkm" parameterType="int">    
+		delete from Kjkm where id = #{id}
+	</delete>
+
+</mapper>    

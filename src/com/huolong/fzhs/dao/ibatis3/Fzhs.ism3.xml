@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Fzhs"> 
+
+
+	<resultMap id="Fzhs" type="com.huolong.fzhs.model.Fzhs">
+		<result property="id" column="id"/>
+		<result property="version" column="version"/>
+		<result property="code" column="code"/>
+		<result property="name" column="name"/>
+		<result property="lxr" column="lxr"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="czh" column="czh"/>
+		<result property="addr" column="addr"/>
+		<result property="qdrq" column="qdrq"/>
+		<result property="jsrq" column="jsrq"/>
+		<result property="wlhsxz" column="wlhsxz"/>
+		<result property="chxz" column="chxz"/>
+		<result property="ggxh" column="ggxh"/>
+		<result property="jldw" column="jldw"/>
+		<result property="sex" column="sex"/>
+		<result property="fzhslx" column="fzhslx"/>
+		<association property="myselef" column="myselef" select="Fzhs.select_inner_Fzhs"/>
+		<association property="orgs" column="orgs" select="HiOrg.select_inner_HiOrg"/>
+		<association property="creator" column="creator" select="HiUser.select_inner_HiUser"/>
+	</resultMap>
+    
+    <select id="select_inner_Fzhs" resultMap="Fzhs" parameterType="int">  
+       SELECT * FROM Sz_fzhs  WHERE id = #{value}
+    </select>
+  
+	<select id="getFzhs" resultMap="Fzhs">
+		select * from Sz_fzhs WHERE id = #{id}
+	</select>
+	<select id="listFzhs" resultMap="Fzhs">#</select>
+  
+	<select id="countFzhs" resultType="int">#</select> 
+	
+	<insert id="insFzhs" parameterType="java.util.HashMap">    
+    	insert into Sz_fzhs (id, version, code, name, lxr, lxdh, czh, addr, qdrq, jsrq, wlhsxz, chxz, ggxh, jldw, sex, fzhslx, myselef, orgs, creator) 
+		values (#{id,jdbcType=NUMERIC}, 1, #{code,jdbcType=LONGVARCHAR}, #{name,jdbcType=LONGVARCHAR}, #{lxr,jdbcType=LONGVARCHAR}, #{lxdh,jdbcType=LONGVARCHAR}, #{czh,jdbcType=LONGVARCHAR}, #{addr,jdbcType=LONGVARCHAR}, #{qdrq,jdbcType=DATE,javaType=java.util.Date}, #{jsrq,jdbcType=DATE,javaType=java.util.Date}, #{wlhsxz,jdbcType=NUMERIC}, #{chxz,jdbcType=NUMERIC}, #{ggxh,jdbcType=LONGVARCHAR}, #{jldw,jdbcType=LONGVARCHAR}, #{sex,jdbcType=NUMERIC}, #{fzhslx,jdbcType=NUMERIC}, #{myselef,jdbcType=NUMERIC}, #{orgs,jdbcType=NUMERIC}, #{creator,jdbcType=NUMERIC})
+		<selectKey resultType="int"  keyProperty="id"/>   
+	</insert>
+	
+	<update id="updateFzhs" parameterType="java.util.HashMap">
+		update Sz_fzhs set
+            version = #{version} +1,
+			code = #{code,jdbcType=LONGVARCHAR},
+			name = #{name,jdbcType=LONGVARCHAR},
+			lxr = #{lxr,jdbcType=LONGVARCHAR},
+			lxdh = #{lxdh,jdbcType=LONGVARCHAR},
+			czh = #{czh,jdbcType=LONGVARCHAR},
+			addr = #{addr,jdbcType=LONGVARCHAR},
+			qdrq = #{qdrq,jdbcType=DATE,javaType=java.util.Date},
+			jsrq = #{jsrq,jdbcType=DATE,javaType=java.util.Date},
+			wlhsxz = #{wlhsxz,jdbcType=NUMERIC},
+			chxz = #{chxz,jdbcType=NUMERIC},
+			ggxh = #{ggxh,jdbcType=LONGVARCHAR},
+			jldw = #{jldw,jdbcType=LONGVARCHAR},
+			sex = #{sex,jdbcType=NUMERIC},
+			fzhslx = #{fzhslx,jdbcType=NUMERIC},
+			myselef = #{myselef,jdbcType=NUMERIC},
+			orgs = #{orgs,jdbcType=NUMERIC},
+			creator = #{creator,jdbcType=NUMERIC}
+    where    
+      id = #{id}    
+	</update>    
+   
+	<delete id="delFzhs" parameterType="int">    
+		delete from Sz_fzhs where id = #{id}
+	</delete>
+
+</mapper>    

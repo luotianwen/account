@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service>
+    <serviceName>fzhs</serviceName>
+    <description>辅助核算</description>
+    <baseData>400000</baseData>    
+    <packageName>com.huolong.fzhs</packageName>
+    
+        
+        
+    <entity>
+		<entityName>Wlhsxz</entityName>
+		<entityType>2</entityType>
+		<tableName></tableName>
+		<entityLabel>性质</entityLabel>
+		<entityBaseData>400800</entityBaseData>
+				<enumeration>
+			<enuValue>wbdw</enuValue>
+			<enuLabel>外部单位</enuLabel>
+			<enuCode></enuCode>
+		</enumeration>
+				<enumeration>
+			<enuValue>wbgr</enuValue>
+			<enuLabel>外部个人</enuLabel>
+			<enuCode></enuCode>
+		</enumeration>
+				<enumeration>
+			<enuValue>nbyg</enuValue>
+			<enuLabel>内部员工</enuLabel>
+			<enuCode></enuCode>
+		</enumeration>
+			</entity>
+    
+               
+        
+    <entity>
+		<entityName>Chxz</entityName>
+		<entityType>2</entityType>
+		<tableName></tableName>
+		<entityLabel>存货性质</entityLabel>
+		<entityBaseData>400900</entityBaseData>
+				<enumeration>
+			<enuValue>clcg</enuValue>
+			<enuLabel>材料采购</enuLabel>
+			<enuCode></enuCode>
+		</enumeration>
+			</entity>
+    
+               
+        <entity>
+        <entityName>Fzhs</entityName>
+                <entityType>1</entityType>
+                <tableName>Sz_fzhs</tableName>
+        <entityLabel>辅助核算</entityLabel>
+        <entityBaseData>401200</entityBaseData>
+        
+                
+        <extendEntity>
+			<extendServiceName></extendServiceName>
+			<extendEntityName></extendEntityName>
+		</extendEntity> 
+		
+                             <field>
+            <fieldName>id</fieldName>
+            <fieldLabel>id</fieldLabel>
+                        <isPrimaryKey>true</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>false</isListDisplay>
+                                    <isReadOnly>true</isReadOnly>
+                                    <isHidden>true</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length>20</length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>2</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName></lkServiceName>
+                <lkEntityName></lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName></mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>code</fieldName>
+            <fieldLabel>编码</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>true</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length>30</length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>1</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName></lkServiceName>
+                <lkEntityName></lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName></mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>name</fieldName>
+            <fieldLabel>名称</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>true</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>true</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length>30</length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>1</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName></lkServiceName>
+                <lkEntityName></lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName></mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>lxr</fieldName>
+            <fieldLabel>联系人</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>true</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length>30</length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>1</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName></lkServiceName>
+                <lkEntityName></lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName></mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>lxdh</fieldName>
+            <fieldLabel>联系电话</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>false</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length>30</length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>1</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName></lkServiceName>
+                <lkEntityName></lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName></mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>czh</fieldName>
+            <fieldLabel>传真号</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>false</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length>30</length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>1</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName></lkServiceName>
+                <lkEntityName></lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName></mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>addr</fieldName>
+            <fieldLabel>地址</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>false</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length>30</length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>1</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName></lkServiceName>
+                <lkEntityName></lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName></mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>qdrq</fieldName>
+            <fieldLabel>启动日期</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>false</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length></length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>4</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName></lkServiceName>
+                <lkEntityName></lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName></mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>jsrq</fieldName>
+            <fieldLabel>结束日期</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>false</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length></length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>4</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName></lkServiceName>
+                <lkEntityName></lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName></mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>wlhsxz</fieldName>
+            <fieldLabel>往来核算性质</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>false</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length></length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>7</fieldType>
+            
+                         <enumerationEntity>Wlhsxz</enumerationEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>chxz</fieldName>
+            <fieldLabel>存货性质</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>false</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length></length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>7</fieldType>
+            
+                         <enumerationEntity>Chxz</enumerationEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>ggxh</fieldName>
+            <fieldLabel>规格型号</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>true</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length>30</length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>1</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName></lkServiceName>
+                <lkEntityName></lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName></mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>jldw</fieldName>
+            <fieldLabel>计量单位</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>true</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length>30</length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>1</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName></lkServiceName>
+                <lkEntityName></lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName></mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>sex</fieldName>
+            <fieldLabel>性别</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>false</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length></length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>7</fieldType>
+            
+                         <enumerationEntity>Gender</enumerationEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>fzhslx</fieldName>
+            <fieldLabel>辅助核算类型</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>true</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length></length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>7</fieldType>
+            
+                         <enumerationEntity>Fzhslx</enumerationEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>myselef</fieldName>
+            <fieldLabel>应用自己</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>false</isListDisplay>
+                                    <isReadOnly>true</isReadOnly>
+                                    <isHidden>true</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length></length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>6</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName>fzhs</lkServiceName>
+                <lkEntityName>Fzhs</lkEntityName>
+                <isLkForeignKey>true</isLkForeignKey>
+                <mainLkFieldName>id</mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>myname</fieldName>
+            <fieldLabel>名称</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>true</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length>30</length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>6</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName>fzhs</lkServiceName>
+                <lkEntityName>Fzhs</lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName>name</mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>mycode</fieldName>
+            <fieldLabel>编码</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>true</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>true</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length>30</length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>6</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName>fzhs</lkServiceName>
+                <lkEntityName>Fzhs</lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName>code</mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>orgs</fieldName>
+            <fieldLabel>部门名称</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>false</isSearch>
+                                    <isListDisplay>false</isListDisplay>
+                                    <isReadOnly>true</isReadOnly>
+                                    <isHidden>true</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length></length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>6</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName>organization</lkServiceName>
+                <lkEntityName>HiOrg</lkEntityName>
+                <isLkForeignKey>true</isLkForeignKey>
+                <mainLkFieldName>id</mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>orgNum</fieldName>
+            <fieldLabel>部门编号</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>true</isSearch>
+                                    <isListDisplay>true</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>false</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length>30</length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>6</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName>organization</lkServiceName>
+                <lkEntityName>HiOrg</lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName>orgNum</mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+                            <field>
+            <fieldName>orgName</fieldName>
+            <fieldLabel>部门名称</fieldLabel>
+                        <isPrimaryKey>false</isPrimaryKey>
+                                    <isSearch>true</isSearch>
+                                    <isListDisplay>true</isListDisplay>
+                                    <isReadOnly>false</isReadOnly>
+                                    <isHidden>false</isHidden>
+                                    <isFull>false</isFull>
+                                    <isMainLookup>true</isMainLookup>
+                        <defaultValue></defaultValue> 
+            <validator></validator>  
+            <length>50</length>
+            <scale></scale>
+                        <isParent>false</isParent>
+            <fieldType>6</fieldType>
+            
+                        <lookupEntity>
+                <lkServiceName>organization</lkServiceName>
+                <lkEntityName>HiOrg</lkEntityName>
+                <isLkForeignKey>false</isLkForeignKey>
+                <mainLkFieldName>orgName</mainLkFieldName>
+            </lookupEntity>
+                        
+                       </field>
+                     
+        
+        
+              
+              		 <field>
+            <fieldName>creator</fieldName>
+            <fieldLabel>创建人</fieldLabel>
+            <isPrimaryKey>false</isPrimaryKey>
+            <isReadOnly>false</isReadOnly>
+            <isSearch>false</isSearch>
+            <isHidden>true</isHidden>
+            <isListDisplay>false</isListDisplay>
+            <isFull>false</isFull>
+            <isMainLookup>false</isMainLookup>
+            <fieldType>6</fieldType>
+            <length>0</length>
+            <scale>0</scale>
+            <defaultValue>org.hi.framework.security.context.UserContextHelper.getUser()</defaultValue>
+            <lookupEntity>
+                <lkServiceName>organization</lkServiceName>
+                <lkEntityName>HiUser</lkEntityName>
+                <isLkForeignKey>true</isLkForeignKey>
+                <mainLkFieldName>id</mainLkFieldName>
+            </lookupEntity>
+        </field>
+                     
+    </entity>
+    
+               
+        
+    <entity>
+		<entityName>Fzhslx</entityName>
+		<entityType>2</entityType>
+		<tableName></tableName>
+		<entityLabel>辅助核算类型</entityLabel>
+		<entityBaseData>401300</entityBaseData>
+				<enumeration>
+			<enuValue>orgs</enuValue>
+			<enuLabel>部门</enuLabel>
+			<enuCode>orgs</enuCode>
+		</enumeration>
+				<enumeration>
+			<enuValue>kh</enuValue>
+			<enuLabel>客户</enuLabel>
+			<enuCode>kh</enuCode>
+		</enumeration>
+				<enumeration>
+			<enuValue>gys</enuValue>
+			<enuLabel>供应商</enuLabel>
+			<enuCode>gys</enuCode>
+		</enumeration>
+				<enumeration>
+			<enuValue>ch</enuValue>
+			<enuLabel>存货</enuLabel>
+			<enuCode>ch</enuCode>
+		</enumeration>
+				<enumeration>
+			<enuValue>ry</enuValue>
+			<enuLabel>人员</enuLabel>
+			<enuCode>ry</enuCode>
+		</enumeration>
+				<enumeration>
+			<enuValue>xm</enuValue>
+			<enuLabel>项目</enuLabel>
+			<enuCode>xm</enuCode>
+		</enumeration>
+				<enumeration>
+			<enuValue>wldw</enuValue>
+			<enuLabel>往来单位</enuLabel>
+			<enuCode>wldw</enuCode>
+		</enumeration>
+			</entity>
+    
+           
+</service>

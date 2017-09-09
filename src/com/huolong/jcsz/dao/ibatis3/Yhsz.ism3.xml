@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Yhsz"> 
+
+
+	<resultMap id="Yhsz" type="com.huolong.jcsz.model.Yhsz">
+		<result property="id" column="id"/>
+		<result property="version" column="version"/>
+		<result property="yhmc" column="yhmc"/>
+		<result property="zhh" column="zhh"/>
+		<result property="zhxz" column="zhxz"/>
+		<result property="lxr" column="lxr"/>
+		<result property="lxdh" column="lxdh"/>
+		<association property="ckbz" column="ckbz" select="Bzsz.select_inner_Bzsz"/>
+		<association property="orgs" column="orgs" select="HiOrg.select_inner_HiOrg"/>
+		<association property="creator" column="creator" select="HiUser.select_inner_HiUser"/>
+	</resultMap>
+    
+    <select id="select_inner_Yhsz" resultMap="Yhsz" parameterType="int">  
+       SELECT * FROM Yhsz  WHERE id = #{value}
+    </select>
+  
+	<select id="getYhsz" resultMap="Yhsz">
+		select * from Yhsz WHERE id = #{id}
+	</select>
+	<select id="listYhsz" resultMap="Yhsz">#</select>
+  
+	<select id="countYhsz" resultType="int">#</select> 
+	
+	<insert id="insYhsz" parameterType="java.util.HashMap">    
+    	insert into Yhsz (id, version, yhmc, zhh, zhxz, ckbz, lxr, lxdh, orgs, creator) 
+		values (#{id,jdbcType=NUMERIC}, 1, #{yhmc,jdbcType=LONGVARCHAR}, #{zhh,jdbcType=LONGVARCHAR}, #{zhxz,jdbcType=NUMERIC}, #{ckbz,jdbcType=NUMERIC}, #{lxr,jdbcType=LONGVARCHAR}, #{lxdh,jdbcType=LONGVARCHAR}, #{orgs,jdbcType=NUMERIC}, #{creator,jdbcType=NUMERIC})
+		<selectKey resultType="int"  keyProperty="id"/>   
+	</insert>
+	
+	<update id="updateYhsz" parameterType="java.util.HashMap">
+		update Yhsz set
+            version = #{version} +1,
+			yhmc = #{yhmc,jdbcType=LONGVARCHAR},
+			zhh = #{zhh,jdbcType=LONGVARCHAR},
+			zhxz = #{zhxz,jdbcType=NUMERIC},
+			ckbz = #{ckbz,jdbcType=NUMERIC},
+			lxr = #{lxr,jdbcType=LONGVARCHAR},
+			lxdh = #{lxdh,jdbcType=LONGVARCHAR},
+			orgs = #{orgs,jdbcType=NUMERIC},
+			creator = #{creator,jdbcType=NUMERIC}
+    where    
+      id = #{id}    
+	</update>    
+   
+	<delete id="delYhsz" parameterType="int">    
+		delete from Yhsz where id = #{id}
+	</delete>
+
+</mapper>    

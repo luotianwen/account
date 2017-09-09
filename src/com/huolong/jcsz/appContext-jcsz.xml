@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Company Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.jcsz.dao.CompanyDAOImpl" class="com.huolong.jcsz.dao.${hi.orm.package}.CompanyDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.jcsz.dao.CompanyDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.jcsz.dao.CompanyDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.jcsz.dao.CompanyDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.jcsz.model.Company" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.jcsz.service.impl.CompanyManagerImpl">
+                <property name="DAO" ref="com.huolong.jcsz.dao.CompanyDAO"/>
+                <property name="modelClass" value="com.huolong.jcsz.model.Company"/>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- ===================== Bzsz Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.jcsz.dao.BzszDAOImpl" class="com.huolong.jcsz.dao.${hi.orm.package}.BzszDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.jcsz.dao.BzszDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.jcsz.dao.BzszDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.jcsz.dao.BzszDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.jcsz.model.Bzsz" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.jcsz.service.impl.BzszManagerImpl">
+                <property name="DAO" ref="com.huolong.jcsz.dao.BzszDAO"/>
+                <property name="modelClass" value="com.huolong.jcsz.model.Bzsz"/>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- ===================== Pzzl Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.jcsz.dao.PzzlDAOImpl" class="com.huolong.jcsz.dao.${hi.orm.package}.PzzlDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.jcsz.dao.PzzlDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.jcsz.dao.PzzlDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.jcsz.dao.PzzlDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.jcsz.model.Pzzl" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.jcsz.service.impl.PzzlManagerImpl">
+                <property name="DAO" ref="com.huolong.jcsz.dao.PzzlDAO"/>
+                <property name="modelClass" value="com.huolong.jcsz.model.Pzzl"/>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- ===================== Yhsz Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.jcsz.dao.YhszDAOImpl" class="com.huolong.jcsz.dao.${hi.orm.package}.YhszDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.jcsz.dao.YhszDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.jcsz.dao.YhszDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.jcsz.dao.YhszDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.jcsz.model.Yhsz" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.jcsz.service.impl.YhszManagerImpl">
+                <property name="DAO" ref="com.huolong.jcsz.dao.YhszDAO"/>
+                <property name="modelClass" value="com.huolong.jcsz.model.Yhsz"/>
+            </bean>
+        </property>
+    </bean>
+</beans>

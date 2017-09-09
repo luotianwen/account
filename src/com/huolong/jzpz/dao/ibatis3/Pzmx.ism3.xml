@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Pzmx"> 
+
+
+	<resultMap id="Pzmx" type="com.huolong.jzpz.model.Pzmx">
+		<result property="id" column="id"/>
+		<result property="version" column="version"/>
+		<result property="dfje" column="dfje"/>
+		<result property="jfje" column="jfje"/>
+		<result property="kmbz" column="kmbz"/>
+		<result property="hlv" column="hlv"/>
+		<result property="fzhs" column="fzhs"/>
+		<result property="fzhsnr" column="fzhsnr"/>
+		<result property="sliang" column="sliang"/>
+		<result property="djia" column="djia"/>
+		<result property="wbjfje" column="wbjfje"/>
+		<result property="wbdfje" column="wbdfje"/>
+		<result property="zhaiyao" column="zhaiyao"/>
+		<association property="kjkm" column="kjkm" select="Kjkm.select_inner_Kjkm"/>
+		<association property="jzpz" column="jzpz" select="Jzpz.select_inner_Jzpz"/>
+		<association property="orgs" column="orgs" select="HiOrg.select_inner_HiOrg"/>
+		<association property="creator" column="creator" select="HiUser.select_inner_HiUser"/>
+	</resultMap>
+    
+    <select id="select_inner_Pzmx" resultMap="Pzmx" parameterType="int">  
+       SELECT * FROM Pzmx  WHERE id = #{value}
+    </select>
+  
+	<select id="getPzmx" resultMap="Pzmx">
+		select * from Pzmx WHERE id = #{id}
+	</select>
+	<select id="listPzmx" resultMap="Pzmx">#</select>
+  
+	<select id="countPzmx" resultType="int">#</select> 
+	
+	<insert id="insPzmx" parameterType="java.util.HashMap">    
+    	insert into Pzmx (id, version, kjkm, dfje, jfje, jzpz, kmbz, hlv, fzhs, fzhsnr, sliang, djia, wbjfje, wbdfje, zhaiyao, orgs, creator) 
+		values (#{id,jdbcType=NUMERIC}, 1, #{kjkm,jdbcType=NUMERIC}, #{dfje,jdbcType=NUMERIC}, #{jfje,jdbcType=NUMERIC}, #{jzpz,jdbcType=NUMERIC}, #{kmbz,jdbcType=LONGVARCHAR}, #{hlv,jdbcType=LONGVARCHAR}, #{fzhs,jdbcType=LONGVARCHAR}, #{fzhsnr,jdbcType=LONGVARCHAR}, #{sliang,jdbcType=LONGVARCHAR}, #{djia,jdbcType=LONGVARCHAR}, #{wbjfje,jdbcType=NUMERIC}, #{wbdfje,jdbcType=NUMERIC}, #{zhaiyao,jdbcType=LONGVARCHAR}, #{orgs,jdbcType=NUMERIC}, #{creator,jdbcType=NUMERIC})
+		<selectKey resultType="int"  keyProperty="id"/>   
+	</insert>
+	
+	<update id="updatePzmx" parameterType="java.util.HashMap">
+		update Pzmx set
+            version = #{version} +1,
+			kjkm = #{kjkm,jdbcType=NUMERIC},
+			dfje = #{dfje,jdbcType=NUMERIC},
+			jfje = #{jfje,jdbcType=NUMERIC},
+			jzpz = #{jzpz,jdbcType=NUMERIC},
+			kmbz = #{kmbz,jdbcType=LONGVARCHAR},
+			hlv = #{hlv,jdbcType=LONGVARCHAR},
+			fzhs = #{fzhs,jdbcType=LONGVARCHAR},
+			fzhsnr = #{fzhsnr,jdbcType=LONGVARCHAR},
+			sliang = #{sliang,jdbcType=LONGVARCHAR},
+			djia = #{djia,jdbcType=LONGVARCHAR},
+			wbjfje = #{wbjfje,jdbcType=NUMERIC},
+			wbdfje = #{wbdfje,jdbcType=NUMERIC},
+			zhaiyao = #{zhaiyao,jdbcType=LONGVARCHAR},
+			orgs = #{orgs,jdbcType=NUMERIC},
+			creator = #{creator,jdbcType=NUMERIC}
+    where    
+      id = #{id}    
+	</update>    
+   
+	<delete id="delPzmx" parameterType="int">    
+		delete from Pzmx where id = #{id}
+	</delete>
+
+</mapper>    

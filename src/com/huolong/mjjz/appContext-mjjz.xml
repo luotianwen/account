@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Yhdzd Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.mjjz.dao.YhdzdDAOImpl" class="com.huolong.mjjz.dao.${hi.orm.package}.YhdzdDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.mjjz.dao.YhdzdDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.mjjz.dao.YhdzdDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.mjjz.dao.YhdzdDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.mjjz.model.Yhdzd" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.mjjz.service.impl.YhdzdManagerImpl">
+                <property name="DAO" ref="com.huolong.mjjz.dao.YhdzdDAO"/>
+                <property name="modelClass" value="com.huolong.mjjz.model.Yhdzd"/>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- ===================== YhdzdMX Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.mjjz.dao.YhdzdMXDAOImpl" class="com.huolong.mjjz.dao.${hi.orm.package}.YhdzdMXDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.mjjz.dao.YhdzdMXDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.mjjz.dao.YhdzdMXDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.mjjz.dao.YhdzdMXDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.mjjz.model.YhdzdMX" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.mjjz.service.impl.YhdzdMXManagerImpl">
+                <property name="DAO" ref="com.huolong.mjjz.dao.YhdzdMXDAO"/>
+                <property name="modelClass" value="com.huolong.mjjz.model.YhdzdMX"/>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- ===================== Sfk Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.mjjz.dao.SfkDAOImpl" class="com.huolong.mjjz.dao.${hi.orm.package}.SfkDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.mjjz.dao.SfkDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.mjjz.dao.SfkDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.mjjz.dao.SfkDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.mjjz.model.Sfk" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.mjjz.service.impl.SfkManagerImpl">
+                <property name="DAO" ref="com.huolong.mjjz.dao.SfkDAO"/>
+                <property name="modelClass" value="com.huolong.mjjz.model.Sfk"/>
+            </bean>
+        </property>
+    </bean>
+</beans>

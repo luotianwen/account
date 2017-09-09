@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="YhdzdMX"> 
+
+
+	<resultMap id="YhdzdMX" type="com.huolong.mjjz.model.YhdzdMX">
+		<result property="id" column="id"/>
+		<result property="version" column="version"/>
+		<result property="yhje" column="yhje"/>
+		<result property="fjs" column="fjs"/>
+		<result property="wldw" column="wldw"/>
+		<result property="biaos" column="biaos"/>
+		<association property="sfk" column="sfk" select="Sfk.select_inner_Sfk"/>
+		<association property="yhdzd" column="yhdzd" select="Yhdzd.select_inner_Yhdzd"/>
+		<association property="gsid" column="gsid" select="HiOrg.select_inner_HiOrg"/>
+		<association property="creator" column="creator" select="HiUser.select_inner_HiUser"/>
+	</resultMap>
+    
+    <select id="select_inner_YhdzdMX" resultMap="YhdzdMX" parameterType="int">  
+       SELECT * FROM Hl_yhdzdmx  WHERE id = #{value}
+    </select>
+  
+	<select id="getYhdzdMX" resultMap="YhdzdMX">
+		select * from Hl_yhdzdmx WHERE id = #{id}
+	</select>
+	<select id="listYhdzdMX" resultMap="YhdzdMX">#</select>
+  
+	<select id="countYhdzdMX" resultType="int">#</select> 
+	
+	<insert id="insYhdzdMX" parameterType="java.util.HashMap">    
+    	insert into Hl_yhdzdmx (id, version, sfk, yhje, fjs, yhdzd, wldw, biaos, gsid, creator) 
+		values (#{id,jdbcType=NUMERIC}, 1, #{sfk,jdbcType=NUMERIC}, #{yhje,jdbcType=NUMERIC}, #{fjs,jdbcType=NUMERIC}, #{yhdzd,jdbcType=NUMERIC}, #{wldw,jdbcType=LONGVARCHAR}, #{biaos,jdbcType=LONGVARCHAR}, #{gsid,jdbcType=NUMERIC}, #{creator,jdbcType=NUMERIC})
+		<selectKey resultType="int"  keyProperty="id"/>   
+	</insert>
+	
+	<update id="updateYhdzdMX" parameterType="java.util.HashMap">
+		update Hl_yhdzdmx set
+            version = #{version} +1,
+			sfk = #{sfk,jdbcType=NUMERIC},
+			yhje = #{yhje,jdbcType=NUMERIC},
+			fjs = #{fjs,jdbcType=NUMERIC},
+			yhdzd = #{yhdzd,jdbcType=NUMERIC},
+			wldw = #{wldw,jdbcType=LONGVARCHAR},
+			biaos = #{biaos,jdbcType=LONGVARCHAR},
+			gsid = #{gsid,jdbcType=NUMERIC},
+			creator = #{creator,jdbcType=NUMERIC}
+    where    
+      id = #{id}    
+	</update>    
+   
+	<delete id="delYhdzdMX" parameterType="int">    
+		delete from Hl_yhdzdmx where id = #{id}
+	</delete>
+
+</mapper>    

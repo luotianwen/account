@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Kmyeb"> 
+
+
+	<resultMap id="Kmyeb" type="com.huolong.kmyeb.model.Kmyeb">
+		<result property="id" column="id"/>
+		<result property="version" column="version"/>
+		<result property="bnljjf" column="bnljjf"/>
+		<result property="bnljdf" column="bnljdf"/>
+		<result property="bnljjfbwb" column="bnljjfbwb"/>
+		<result property="bnljdfbwb" column="bnljdfbwb"/>
+		<result property="jffse" column="jffse"/>
+		<result property="dffse" column="dffse"/>
+		<result property="qcyefx" column="qcyefx"/>
+		<result property="qmyefx" column="qmyefx"/>
+		<result property="qmye" column="qmye"/>
+		<result property="ncsl" column="ncsl"/>
+		<result property="ncye" column="ncye"/>
+		<result property="ncyebwb" column="ncyebwb"/>
+		<result property="sljffsesl" column="sljffsesl"/>
+		<result property="sldffsesl" column="sldffsesl"/>
+		<result property="slbnljjfsl" column="slbnljjfsl"/>
+		<result property="slbnljdfsl" column="slbnljdfsl"/>
+		<result property="slqcyesl" column="slqcyesl"/>
+		<result property="slqcyedj" column="slqcyedj"/>
+		<result property="slqmyesl" column="slqmyesl"/>
+		<result property="slqmyedj" column="slqmyedj"/>
+		<result property="fzhs" column="fzhs"/>
+		<result property="kjqj" column="kjqj"/>
+		<result property="jldw" column="jldw"/>
+		<result property="qcye" column="qcye"/>
+		<result property="cshbwb" column="cshbwb"/>
+		<result property="wbqmye" column="wbqmye"/>
+		<result property="qcbnjf" column="qcbnjf"/>
+		<result property="qcbndf" column="qcbndf"/>
+		<result property="qcbnjfbwb" column="qcbnjfbwb"/>
+		<result property="qcbndfbwb" column="qcbndfbwb"/>
+		<result property="jzqyeljs" column="jzqyeljs"/>
+		<result property="jzqyebqs" column="jzqyebqs"/>
+		<result property="bzname" column="bzname"/>
+		<result property="fzhsnr" column="fzhsnr"/>
+		<association property="kmmclookup" column="kmmclookup" select="Kjkm.select_inner_Kjkm"/>
+		<association property="gsid" column="gsid" select="Company.select_inner_Company"/>
+		<association property="orgs" column="orgs" select="HiOrg.select_inner_HiOrg"/>
+		<association property="creator" column="creator" select="HiUser.select_inner_HiUser"/>
+	</resultMap>
+    
+    <select id="select_inner_Kmyeb" resultMap="Kmyeb" parameterType="int">  
+       SELECT * FROM Kmyeb  WHERE id = #{value}
+    </select>
+  
+	<select id="getKmyebBykmbh" parameterType="java.util.HashMap" resultMap="Kmyeb">
+		<![CDATA[ 
+		select * from Kmyeb  k ,kjkm km where k.kjqj= #{kjqj} and
+		k.kmmclookup=km.id  and km.kmmx=3200 and km.kmbh like #{kmbh}  and k.orgs=#{gsid}
+	]]>
+	</select>
+	<select id="getKmyebBykmid" parameterType="java.util.HashMap" resultMap="Kmyeb">
+		select sum(qmye)as qmye from kmyeb where kmmclookup=#{kmid}  and kjqj=#{kjqj}  and orgs=#{gsid}
+	</select>
+	<select id="getKmyebListBYkjqj" parameterType="java.util.HashMap" resultMap="Kmyeb">
+		select * from Kmyeb  k   where k.kjqj= #{kjqj} and  orgs=#{gsid}
+	</select>
+	<select id="getKmyeb" resultMap="Kmyeb">
+		select * from Kmyeb WHERE id = #{id}
+	</select>
+	<select id="listKmyeb" resultMap="Kmyeb">#</select>
+  
+	<select id="countKmyeb" resultType="int">#</select> 
+	
+	<insert id="insKmyeb" parameterType="java.util.HashMap">    
+    	insert into Kmyeb (id, version, bnljjf, bnljdf, bnljjfbwb, bnljdfbwb, jffse, dffse, qcyefx, qmyefx, qmye, ncsl, ncye, ncyebwb, sljffsesl, sldffsesl, slbnljjfsl, slbnljdfsl, slqcyesl, slqcyedj, slqmyesl, slqmyedj, fzhs, kjqj, jldw, qcye, cshbwb, wbqmye, qcbnjf, qcbndf, qcbnjfbwb, qcbndfbwb, jzqyeljs, jzqyebqs, kmmclookup, gsid, bzname, fzhsnr, orgs, creator) 
+		values (#{id,jdbcType=NUMERIC}, 1, #{bnljjf,jdbcType=LONGVARCHAR}, #{bnljdf,jdbcType=LONGVARCHAR}, #{bnljjfbwb,jdbcType=LONGVARCHAR}, #{bnljdfbwb,jdbcType=LONGVARCHAR}, #{jffse,jdbcType=LONGVARCHAR}, #{dffse,jdbcType=LONGVARCHAR}, #{qcyefx,jdbcType=LONGVARCHAR}, #{qmyefx,jdbcType=LONGVARCHAR}, #{qmye,jdbcType=LONGVARCHAR}, #{ncsl,jdbcType=LONGVARCHAR}, #{ncye,jdbcType=LONGVARCHAR}, #{ncyebwb,jdbcType=LONGVARCHAR}, #{sljffsesl,jdbcType=LONGVARCHAR}, #{sldffsesl,jdbcType=LONGVARCHAR}, #{slbnljjfsl,jdbcType=LONGVARCHAR}, #{slbnljdfsl,jdbcType=LONGVARCHAR}, #{slqcyesl,jdbcType=LONGVARCHAR}, #{slqcyedj,jdbcType=LONGVARCHAR}, #{slqmyesl,jdbcType=LONGVARCHAR}, #{slqmyedj,jdbcType=LONGVARCHAR}, #{fzhs,jdbcType=LONGVARCHAR}, #{kjqj,jdbcType=LONGVARCHAR}, #{jldw,jdbcType=LONGVARCHAR}, #{qcye,jdbcType=LONGVARCHAR}, #{cshbwb,jdbcType=LONGVARCHAR}, #{wbqmye,jdbcType=LONGVARCHAR}, #{qcbnjf,jdbcType=LONGVARCHAR}, #{qcbndf,jdbcType=LONGVARCHAR}, #{qcbnjfbwb,jdbcType=LONGVARCHAR}, #{qcbndfbwb,jdbcType=LONGVARCHAR}, #{jzqyeljs,jdbcType=LONGVARCHAR}, #{jzqyebqs,jdbcType=LONGVARCHAR}, #{kmmclookup,jdbcType=NUMERIC}, #{gsid,jdbcType=NUMERIC}, #{bzname,jdbcType=LONGVARCHAR}, #{fzhsnr,jdbcType=LONGVARCHAR}, #{orgs,jdbcType=NUMERIC}, #{creator,jdbcType=NUMERIC})
+		<selectKey resultType="int"  keyProperty="id"/>   
+	</insert>
+	
+	<update id="updateKmyeb" parameterType="java.util.HashMap">
+		update Kmyeb set
+            version = #{version} +1,
+			bnljjf = #{bnljjf,jdbcType=LONGVARCHAR},
+			bnljdf = #{bnljdf,jdbcType=LONGVARCHAR},
+			bnljjfbwb = #{bnljjfbwb,jdbcType=LONGVARCHAR},
+			bnljdfbwb = #{bnljdfbwb,jdbcType=LONGVARCHAR},
+			jffse = #{jffse,jdbcType=LONGVARCHAR},
+			dffse = #{dffse,jdbcType=LONGVARCHAR},
+			qcyefx = #{qcyefx,jdbcType=LONGVARCHAR},
+			qmyefx = #{qmyefx,jdbcType=LONGVARCHAR},
+			qmye = #{qmye,jdbcType=LONGVARCHAR},
+			ncsl = #{ncsl,jdbcType=LONGVARCHAR},
+			ncye = #{ncye,jdbcType=LONGVARCHAR},
+			ncyebwb = #{ncyebwb,jdbcType=LONGVARCHAR},
+			sljffsesl = #{sljffsesl,jdbcType=LONGVARCHAR},
+			sldffsesl = #{sldffsesl,jdbcType=LONGVARCHAR},
+			slbnljjfsl = #{slbnljjfsl,jdbcType=LONGVARCHAR},
+			slbnljdfsl = #{slbnljdfsl,jdbcType=LONGVARCHAR},
+			slqcyesl = #{slqcyesl,jdbcType=LONGVARCHAR},
+			slqcyedj = #{slqcyedj,jdbcType=LONGVARCHAR},
+			slqmyesl = #{slqmyesl,jdbcType=LONGVARCHAR},
+			slqmyedj = #{slqmyedj,jdbcType=LONGVARCHAR},
+			fzhs = #{fzhs,jdbcType=LONGVARCHAR},
+			kjqj = #{kjqj,jdbcType=LONGVARCHAR},
+			jldw = #{jldw,jdbcType=LONGVARCHAR},
+			qcye = #{qcye,jdbcType=LONGVARCHAR},
+			cshbwb = #{cshbwb,jdbcType=LONGVARCHAR},
+			wbqmye = #{wbqmye,jdbcType=LONGVARCHAR},
+			qcbnjf = #{qcbnjf,jdbcType=LONGVARCHAR},
+			qcbndf = #{qcbndf,jdbcType=LONGVARCHAR},
+			qcbnjfbwb = #{qcbnjfbwb,jdbcType=LONGVARCHAR},
+			qcbndfbwb = #{qcbndfbwb,jdbcType=LONGVARCHAR},
+			jzqyeljs = #{jzqyeljs,jdbcType=LONGVARCHAR},
+			jzqyebqs = #{jzqyebqs,jdbcType=LONGVARCHAR},
+			kmmclookup = #{kmmclookup,jdbcType=NUMERIC},
+			gsid = #{gsid,jdbcType=NUMERIC},
+			bzname = #{bzname,jdbcType=LONGVARCHAR},
+			fzhsnr = #{fzhsnr,jdbcType=LONGVARCHAR},
+			orgs = #{orgs,jdbcType=NUMERIC},
+			creator = #{creator,jdbcType=NUMERIC}
+    where    
+      id = #{id}    
+	</update>    
+   
+	<delete id="delKmyeb" parameterType="int">    
+		delete from Kmyeb where id = #{id}
+	</delete>
+
+</mapper>    

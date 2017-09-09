@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="kmyeb" extends="hi" >
+		<!-- ============= 科目余额表对应的KmyebAction============ --> 
+		<action name="kmyeb" class="com.huolong.kmyeb.action.struts.KmyebAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="kmyebList"
+			class="com.huolong.kmyeb.action.struts.KmyebAction" method="kmyebList">
+			<result name="success">/kmyeb/KmyebList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="kmyebSave"
+			class="com.huolong.kmyeb.action.struts.KmyebAction" method="saveKmyeb">
+			<result name="success" type="redirectAction">kmyebList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="kmyebEdit"
+			class="com.huolong.kmyeb.action.struts.KmyebAction" method="viewKmyeb">
+			<result name="success">/kmyeb/KmyebEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="kmyebView"
+			class="com.huolong.kmyeb.action.struts.KmyebAction" method="viewKmyeb">
+			<result name="success">/kmyeb/KmyebView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="kmyebRemove"
+			class="com.huolong.kmyeb.action.struts.KmyebAction" method="removeKmyeb">
+			<result name="success" type="redirectAction">kmyebList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="kmyebRemoveAll"
+			class="com.huolong.kmyeb.action.struts.KmyebAction" method="removeAllKmyeb">
+			<result name="success" type="redirectAction">kmyebList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="kmyebLookup"
+			class="com.huolong.kmyeb.action.struts.KmyebAction" method="kmyebList">
+			<result name="success">/kmyeb/KmyebList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		<!-- ============= 存款余额调节表对应的CkyetjbAction============ --> 
+		<action name="ckyetjb" class="com.huolong.kmyeb.action.struts.CkyetjbAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="ckyetjbList"
+			class="com.huolong.kmyeb.action.struts.CkyetjbAction" method="ckyetjbList">
+			<result name="success">/kmyeb/CkyetjbList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="ckyetjbSave"
+			class="com.huolong.kmyeb.action.struts.CkyetjbAction" method="saveCkyetjb">
+			<result name="success" type="redirectAction">ckyetjbList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="ckyetjbEdit"
+			class="com.huolong.kmyeb.action.struts.CkyetjbAction" method="viewCkyetjb">
+			<result name="success">/kmyeb/CkyetjbEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="ckyetjbView"
+			class="com.huolong.kmyeb.action.struts.CkyetjbAction" method="viewCkyetjb">
+			<result name="success">/kmyeb/CkyetjbView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="ckyetjbRemove"
+			class="com.huolong.kmyeb.action.struts.CkyetjbAction" method="removeCkyetjb">
+			<result name="success" type="redirectAction">ckyetjbList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="ckyetjbRemoveAll"
+			class="com.huolong.kmyeb.action.struts.CkyetjbAction" method="removeAllCkyetjb">
+			<result name="success" type="redirectAction">ckyetjbList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="ckyetjbLookup"
+			class="com.huolong.kmyeb.action.struts.CkyetjbAction" method="ckyetjbList">
+			<result name="success">/kmyeb/CkyetjbList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		<!-- ============= 期末调汇对应的BzhlAction============ --> 
+		<action name="bzhl" class="com.huolong.kmyeb.action.struts.BzhlAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="bzhlList"
+			class="com.huolong.kmyeb.action.struts.BzhlAction" method="bzhlList">
+			<result name="success">/kmyeb/BzhlList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="bzhlSave"
+			class="com.huolong.kmyeb.action.struts.BzhlAction" method="saveBzhl">
+			<result name="success" type="redirectAction">bzhlList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="bzhlEdit"
+			class="com.huolong.kmyeb.action.struts.BzhlAction" method="viewBzhl">
+			<result name="success">/kmyeb/BzhlEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="bzhlView"
+			class="com.huolong.kmyeb.action.struts.BzhlAction" method="viewBzhl">
+			<result name="success">/kmyeb/BzhlView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="bzhlRemove"
+			class="com.huolong.kmyeb.action.struts.BzhlAction" method="removeBzhl">
+			<result name="success" type="redirectAction">bzhlList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="bzhlRemoveAll"
+			class="com.huolong.kmyeb.action.struts.BzhlAction" method="removeAllBzhl">
+			<result name="success" type="redirectAction">bzhlList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="bzhlLookup"
+			class="com.huolong.kmyeb.action.struts.BzhlAction" method="bzhlList">
+			<result name="success">/kmyeb/BzhlList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+
+</package>
+</struts>

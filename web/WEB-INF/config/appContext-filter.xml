@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="hiFilterChainProxy" class="org.hi.framework.security.acegi.HiFilterChainProxy">
+      <property name="filterInvocationDefinitionSource">
+         <value>
+		    CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+		    PATTERN_TYPE_APACHE_ANT
+              /**=hiHelperFilter
+         </value>
+      </property>
+    </bean>
+
+  <bean id="hiHelperFilter" class="org.hi.base.sysapp.HelperFilter">
+     <property name="include" value="*.action"/>
+     <property name="uninclude" value="*helper!*.action"/>
+     <property name="collect" value="true"/>
+  </bean>
+
+</beans>

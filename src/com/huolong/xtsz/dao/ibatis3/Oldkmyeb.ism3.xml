@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Oldkmyeb"> 
+
+
+	<resultMap id="Oldkmyeb" type="com.huolong.xtsz.model.Oldkmyeb">
+		<result property="id" column="id"/>
+		<result property="version" column="version"/>
+		<association property="att_attachment" column="att_attachment" select="Attachment.select_inner_Attachment"/>
+		<association property="orgs" column="orgs" select="HiOrg.select_inner_HiOrg"/>
+		<association property="creator" column="creator" select="HiUser.select_inner_HiUser"/>
+	</resultMap>
+    
+    <select id="select_inner_Oldkmyeb" resultMap="Oldkmyeb" parameterType="int">  
+       SELECT * FROM Hl_oldkmyeb  WHERE id = #{value}
+    </select>
+  
+	<select id="getOldkmyeb" resultMap="Oldkmyeb">
+		select * from Hl_oldkmyeb WHERE id = #{id}
+	</select>
+	<select id="listOldkmyeb" resultMap="Oldkmyeb">#</select>
+  
+	<select id="countOldkmyeb" resultType="int">#</select> 
+	
+	<insert id="insOldkmyeb" parameterType="java.util.HashMap">    
+    	insert into Hl_oldkmyeb (id, version, att_attachment, orgs, creator) 
+		values (#{id,jdbcType=NUMERIC}, 1, #{att_attachment,jdbcType=NUMERIC}, #{orgs,jdbcType=NUMERIC}, #{creator,jdbcType=NUMERIC})
+		<selectKey resultType="int"  keyProperty="id"/>   
+	</insert>
+	
+	<update id="updateOldkmyeb" parameterType="java.util.HashMap">
+		update Hl_oldkmyeb set
+            version = #{version} +1,
+			att_attachment = #{att_attachment,jdbcType=NUMERIC},
+			orgs = #{orgs,jdbcType=NUMERIC},
+			creator = #{creator,jdbcType=NUMERIC}
+    where    
+      id = #{id}    
+	</update>    
+   
+	<delete id="delOldkmyeb" parameterType="int">    
+		delete from Hl_oldkmyeb where id = #{id}
+	</delete>
+
+</mapper>    

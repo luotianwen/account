@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="fzhs" extends="hi" >
+		<!-- ============= 辅助核算对应的FzhsAction============ --> 
+		<action name="fzhs" class="com.huolong.fzhs.action.struts.FzhsAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="fzhsList"
+			class="com.huolong.fzhs.action.struts.FzhsAction" method="fzhsList">
+			<result name="success">/fzhs/FzhsList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="fzhsSave"
+			class="com.huolong.fzhs.action.struts.FzhsAction" method="saveFzhs">
+			<result name="success" type="redirectAction">fzhsList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="fzhsEdit"
+			class="com.huolong.fzhs.action.struts.FzhsAction" method="viewFzhs">
+			<result name="success">/fzhs/FzhsEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="fzhsView"
+			class="com.huolong.fzhs.action.struts.FzhsAction" method="viewFzhs">
+			<result name="success">/fzhs/FzhsView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="fzhsRemove"
+			class="com.huolong.fzhs.action.struts.FzhsAction" method="removeFzhs">
+			<result name="success" type="redirectAction">fzhsList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="fzhsRemoveAll"
+			class="com.huolong.fzhs.action.struts.FzhsAction" method="removeAllFzhs">
+			<result name="success" type="redirectAction">fzhsList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="fzhsLookup"
+			class="com.huolong.fzhs.action.struts.FzhsAction" method="fzhsList">
+			<result name="success">/fzhs/FzhsList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+
+</package>
+</struts>

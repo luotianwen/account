@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="jzpz" extends="hi" >
+		<!-- ============= 记账凭证对应的JzpzAction============ --> 
+		<action name="jzpz" class="com.huolong.jzpz.action.struts.JzpzAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="jzpzList"
+			class="com.huolong.jzpz.action.struts.JzpzAction" method="jzpzList">
+			<result name="success">/jzpz/JzpzList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="jzpzSave"
+			class="com.huolong.jzpz.action.struts.JzpzAction" method="saveJzpz">
+			<result name="success" type="redirectAction">jzpzList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="jzpzEdit"
+			class="com.huolong.jzpz.action.struts.JzpzAction" method="viewJzpz">
+			<result name="success">/jzpz/JzpzEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="jzpzView"
+			class="com.huolong.jzpz.action.struts.JzpzAction" method="viewJzpz">
+			<result name="success">/jzpz/JzpzView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="jzpzRemove"
+			class="com.huolong.jzpz.action.struts.JzpzAction" method="removeJzpz">
+			<result name="success" type="redirectAction">jzpzList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="jzpzRemoveAll"
+			class="com.huolong.jzpz.action.struts.JzpzAction" method="removeAllJzpz">
+			<result name="success" type="redirectAction">jzpzList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="jzpzLookup"
+			class="com.huolong.jzpz.action.struts.JzpzAction" method="jzpzList">
+			<result name="success">/jzpz/JzpzList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		<!-- ============= 凭证明细对应的PzmxAction============ --> 
+		<action name="pzmx" class="com.huolong.jzpz.action.struts.PzmxAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="pzmxList"
+			class="com.huolong.jzpz.action.struts.PzmxAction" method="pzmxList">
+			<result name="success">/jzpz/PzmxList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="pzmxSave"
+			class="com.huolong.jzpz.action.struts.PzmxAction" method="savePzmx">
+			<result name="success" type="redirectAction">pzmxList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="pzmxEdit"
+			class="com.huolong.jzpz.action.struts.PzmxAction" method="viewPzmx">
+			<result name="success">/jzpz/PzmxEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="pzmxView"
+			class="com.huolong.jzpz.action.struts.PzmxAction" method="viewPzmx">
+			<result name="success">/jzpz/PzmxView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="pzmxRemove"
+			class="com.huolong.jzpz.action.struts.PzmxAction" method="removePzmx">
+			<result name="success" type="redirectAction">pzmxList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="pzmxRemoveAll"
+			class="com.huolong.jzpz.action.struts.PzmxAction" method="removeAllPzmx">
+			<result name="success" type="redirectAction">pzmxList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="pzmxLookup"
+			class="com.huolong.jzpz.action.struts.PzmxAction" method="pzmxList">
+			<result name="success">/jzpz/PzmxList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		<!-- ============= 摘要对应的ZhaiyaoAction============ --> 
+		<action name="zhaiyao" class="com.huolong.jzpz.action.struts.ZhaiyaoAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="zhaiyaoList"
+			class="com.huolong.jzpz.action.struts.ZhaiyaoAction" method="zhaiyaoList">
+			<result name="success">/jzpz/ZhaiyaoList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="zhaiyaoSave"
+			class="com.huolong.jzpz.action.struts.ZhaiyaoAction" method="saveZhaiyao">
+			<result name="success" type="redirectAction">zhaiyaoList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="zhaiyaoEdit"
+			class="com.huolong.jzpz.action.struts.ZhaiyaoAction" method="viewZhaiyao">
+			<result name="success">/jzpz/ZhaiyaoEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="zhaiyaoView"
+			class="com.huolong.jzpz.action.struts.ZhaiyaoAction" method="viewZhaiyao">
+			<result name="success">/jzpz/ZhaiyaoView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="zhaiyaoRemove"
+			class="com.huolong.jzpz.action.struts.ZhaiyaoAction" method="removeZhaiyao">
+			<result name="success" type="redirectAction">zhaiyaoList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="zhaiyaoRemoveAll"
+			class="com.huolong.jzpz.action.struts.ZhaiyaoAction" method="removeAllZhaiyao">
+			<result name="success" type="redirectAction">zhaiyaoList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="zhaiyaoLookup"
+			class="com.huolong.jzpz.action.struts.ZhaiyaoAction" method="zhaiyaoList">
+			<result name="success">/jzpz/ZhaiyaoList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		<!-- ============= 凭证字号对应的PzzhAction============ --> 
+		<action name="pzzh" class="com.huolong.jzpz.action.struts.PzzhAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="pzzhList"
+			class="com.huolong.jzpz.action.struts.PzzhAction" method="pzzhList">
+			<result name="success">/jzpz/PzzhList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="pzzhSave"
+			class="com.huolong.jzpz.action.struts.PzzhAction" method="savePzzh">
+			<result name="success" type="redirectAction">pzzhList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="pzzhEdit"
+			class="com.huolong.jzpz.action.struts.PzzhAction" method="viewPzzh">
+			<result name="success">/jzpz/PzzhEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="pzzhView"
+			class="com.huolong.jzpz.action.struts.PzzhAction" method="viewPzzh">
+			<result name="success">/jzpz/PzzhView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="pzzhRemove"
+			class="com.huolong.jzpz.action.struts.PzzhAction" method="removePzzh">
+			<result name="success" type="redirectAction">pzzhList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="pzzhRemoveAll"
+			class="com.huolong.jzpz.action.struts.PzzhAction" method="removeAllPzzh">
+			<result name="success" type="redirectAction">pzzhList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="pzzhLookup"
+			class="com.huolong.jzpz.action.struts.PzzhAction" method="pzzhList">
+			<result name="success">/jzpz/PzzhList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+
+</package>
+</struts>

@@ -1,0 +1,420 @@
+一、如何将文档转成flash支持的swf文件实现在线播放？
+1.先用openOffice把ppt、word、excel、txt类型的文档转换成pdf
+2.用swftools将pdf转换成swf，然后利用FlexPaper插件实现在线播放预览。
+二、具体实现
+1.安装必备工具组件
+(1)安装openoffice,openoffice是开源免费的文字处理软件，它可以将office文档转成pdf文件（笔者安装到D:\Program Files),openOffice下载地址http://www.openoffice.org/download/index.html
+(2)安装完openoffice后必须启动其server，以命令行方式启动openoffice server。进入cmd命令行提示符D:\Program Files\OpenOffice.org 3\program\
+键入如下命令：
+soffice -headless -accept="socket,host=127.0.0.1,port=8100;urp;" –nofirststartwizard
+
+进入windows任务管理器查看有个进程soffice.bin,说明openoffice启动成功！
+
+(3)安装swfTools（安装到 D:\Program Files）swftools作用是将pdf转换为swf文件以便flexpaper播放。下载地址：http://www.swftools.org/download.html
+(4)下载flexpaper，下载地址：http://flexpaper.devaldi.com/download/
+笔者下载的是FlexPaper_1.5.1，下载后将其解压备用。
+(5)下载OpenDocument文档转换器 JODConverter，JODConverter是一个java的OpenDucument文件转换器，可以进行许多文件格式的转换，它利用OpenOffice来进行转换工作，它能进行以下的转换工作：
+a.Microsoft Office格式转换为OpenDucument，以及OpenDucument转换为Microsoft Office
+b.OpenDucument转换为PDF，Word、Excel、PowerPoint转换为PDF，RTF转换为PDF等。
+下载地址：http://sourceforge.net/projects/jodconverter/files/
+我们后面开发主要用它的jodconverter-2.2.2.jar包
+
+2.软件开发过程
+(1)启动Eclipse，新建web项目名称为ctcesims
+(2)将上面第4步解压的flexpaper文件中的js文件夹(包含了flexpaper_flash_debug.js，flexpaper_flash.js,jquery.js,这三个js文件主要是预览swf文件的插件)拷贝至网站根目录;将FlexPaperViewer.swf拷贝至网站根目录下(该文件主要是用在网页中播放swf文件的播放器)，目录结构如下图
+
+(3)创建documentUpload.jsp文件
+[html] view plaincopy在CODE上查看代码片派生到我的代码片
+<%@ page language="java" contentType="text/html; charset=UTF-8"  
+    pageEncoding="UTF-8"%>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html>  
+<head>  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+<title>文档在线预览系统</title>  
+<style>  
+    body {margin-top:100px;background:#fff;font-family: Verdana, Tahoma;}  
+    a {color:#CE4614;}  
+    #msg-box {color: #CE4614; font-size:0.9em;text-align:center;}  
+    #msg-box .logo {border-bottom:5px solid #ECE5D9;margin-bottom:20px;padding-bottom:10px;}  
+    #msg-box .title {font-size:1.4em;font-weight:bold;margin:0 0 30px 0;}  
+    #msg-box .nav {margin-top:20px;}  
+</style>  
+  
+</head>  
+<body>  
+<div id="msg-box">  
+    <form name="form1"  method="post" enctype="multipart/form-data" action="docUploadConvertAction.jsp">  
+        <div class="title">  
+            请上传要处理的文件，过程可能需要几分钟，请稍候片刻。  
+        </div>  
+        <p>  
+            <input name="file1" type="file">  
+        </p>  
+        <p>  
+            <input type="submit" name="Submit" value="上传">  
+        </p>  
+    </form >  
+</div>  
+</body>  
+</html>  
+(4)创建文档转换类DocConverter.java
+[java] view plaincopy在CODE上查看代码片派生到我的代码片
+package com.cectsims.util;  
+import java.io.BufferedInputStream;  
+import java.io.File;  
+import java.io.IOException;  
+import java.io.InputStream;  
+  
+import com.artofsolving.jodconverter.DocumentConverter;  
+import com.artofsolving.jodconverter.openoffice.connection.OpenOfficeConnection;  
+import com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection;  
+import com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConverter;  
+  
+/** 
+ * doc docx格式转换 
+ */  
+public class DocConverter {  
+    private static final int environment = 1;// 环境 1：windows 2:linux  
+    private String fileString;// (只涉及pdf2swf路径问题)  
+    private String outputPath = "";// 输入路径 ，如果不设置就输出在默认的位置  
+    private String fileName;  
+    private File pdfFile;  
+    private File swfFile;  
+    private File docFile;  
+      
+    public DocConverter(String fileString) {  
+        ini(fileString);  
+    }  
+  
+    /** 
+     * 重新设置file 
+     *  
+     * @param fileString 
+     */  
+    public void setFile(String fileString) {  
+        ini(fileString);  
+    }  
+  
+    /** 
+     * 初始化 
+     *  
+     * @param fileString 
+     */  
+    private void ini(String fileString) {  
+        this.fileString = fileString;  
+        fileName = fileString.substring(0, fileString.lastIndexOf("."));  
+        docFile = new File(fileString);  
+        pdfFile = new File(fileName + ".pdf");  
+        swfFile = new File(fileName + ".swf");  
+    }  
+      
+    /** 
+     * 转为PDF 
+     *  
+     * @param file 
+     */  
+    private void doc2pdf() throws Exception {  
+        if (docFile.exists()) {  
+            if (!pdfFile.exists()) {  
+                OpenOfficeConnection connection = new SocketOpenOfficeConnection(8100);  
+                try {  
+                    connection.connect();  
+                    DocumentConverter converter = new OpenOfficeDocumentConverter(connection);  
+                    converter.convert(docFile, pdfFile);  
+                    // close the connection  
+                    connection.disconnect();  
+                    System.out.println("****pdf转换成功，PDF输出：" + pdfFile.getPath()+ "****");  
+                } catch (java.net.ConnectException e) {  
+                    e.printStackTrace();  
+                    System.out.println("****swf转换器异常，openoffice服务未启动！****");  
+                    throw e;  
+                } catch (com.artofsolving.jodconverter.openoffice.connection.OpenOfficeException e) {  
+                    e.printStackTrace();  
+                    System.out.println("****swf转换器异常，读取转换文件失败****");  
+                    throw e;  
+                } catch (Exception e) {  
+                    e.printStackTrace();  
+                    throw e;  
+                }  
+            } else {  
+                System.out.println("****已经转换为pdf，不需要再进行转化****");  
+            }  
+        } else {  
+            System.out.println("****swf转换器异常，需要转换的文档不存在，无法转换****");  
+        }  
+    }  
+      
+    /** 
+     * 转换成 swf 
+     */  
+    @SuppressWarnings("unused")  
+    private void pdf2swf() throws Exception {  
+        Runtime r = Runtime.getRuntime();  
+        if (!swfFile.exists()) {  
+            if (pdfFile.exists()) {  
+                if (environment == 1) {// windows环境处理  
+                    try {  
+                        Process p = r.exec("D:/Program Files/SWFTools/pdf2swf.exe "+ pdfFile.getPath() + " -o "+ swfFile.getPath() + " -T 9");  
+                        System.out.print(loadStream(p.getInputStream()));  
+                        System.err.print(loadStream(p.getErrorStream()));  
+                        System.out.print(loadStream(p.getInputStream()));  
+                        System.err.println("****swf转换成功，文件输出："  
+                                + swfFile.getPath() + "****");  
+                        if (pdfFile.exists()) {  
+                            pdfFile.delete();  
+                        }  
+  
+                    } catch (IOException e) {  
+                        e.printStackTrace();  
+                        throw e;  
+                    }  
+                } else if (environment == 2) {// linux环境处理  
+                    try {  
+                        Process p = r.exec("pdf2swf " + pdfFile.getPath()  
+                                + " -o " + swfFile.getPath() + " -T 9");  
+                        System.out.print(loadStream(p.getInputStream()));  
+                        System.err.print(loadStream(p.getErrorStream()));  
+                        System.err.println("****swf转换成功，文件输出："  
+                                + swfFile.getPath() + "****");  
+                        if (pdfFile.exists()) {  
+                            pdfFile.delete();  
+                        }  
+                    } catch (Exception e) {  
+                        e.printStackTrace();  
+                        throw e;  
+                    }  
+                }  
+            } else {  
+                System.out.println("****pdf不存在,无法转换****");  
+            }  
+        } else {  
+            System.out.println("****swf已经存在不需要转换****");  
+        }  
+    }  
+  
+    static String loadStream(InputStream in) throws IOException {  
+  
+        int ptr = 0;  
+        in = new BufferedInputStream(in);  
+        StringBuffer buffer = new StringBuffer();  
+  
+        while ((ptr = in.read()) != -1) {  
+            buffer.append((char) ptr);  
+        }  
+  
+        return buffer.toString();  
+    }  
+    /** 
+     * 转换主方法 
+     */  
+    @SuppressWarnings("unused")  
+    public boolean conver() {  
+  
+        if (swfFile.exists()) {  
+            System.out.println("****swf转换器开始工作，该文件已经转换为swf****");  
+            return true;  
+        }  
+  
+        if (environment == 1) {  
+            System.out.println("****swf转换器开始工作，当前设置运行环境windows****");  
+        } else {  
+            System.out.println("****swf转换器开始工作，当前设置运行环境linux****");  
+        }  
+        try {  
+            doc2pdf();  
+            pdf2swf();  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+            return false;  
+        }  
+  
+        if (swfFile.exists()) {  
+            return true;  
+        } else {  
+            return false;  
+        }  
+    }  
+  
+    /** 
+     * 返回文件路径 
+     *  
+     * @param s 
+     */  
+    public String getswfPath() {  
+        if (swfFile.exists()) {  
+            String tempString = swfFile.getPath();  
+            tempString = tempString.replaceAll("\\\\", "/");  
+            return tempString;  
+        } else {  
+            return "";  
+        }  
+  
+    }  
+    /** 
+     * 设置输出路径 
+     */  
+    public void setOutputPath(String outputPath) {  
+        this.outputPath = outputPath;  
+        if (!outputPath.equals("")) {  
+            String realName = fileName.substring(fileName.lastIndexOf("/"),  
+                    fileName.lastIndexOf("."));  
+            if (outputPath.charAt(outputPath.length()) == '/') {  
+                swfFile = new File(outputPath + realName + ".swf");  
+            } else {  
+                swfFile = new File(outputPath + realName + ".swf");  
+            }  
+        }  
+    }  
+  
+}  
+(5)创建文档上传转换处理文件docUploadConvertAction.jsp文件
+[html] view plaincopy在CODE上查看代码片派生到我的代码片
+<%@ page language="java" contentType="text/html; charset=UTF-8"  
+    pageEncoding="UTF-8"%>  
+  
+<%@page import="java.io.*"%>  
+<%@page import="java.util.Enumeration"%>  
+<%@page import="com.oreilly.servlet.MultipartRequest"%>  
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>  
+<%@page import="com.cectsims.util.DocConverter"%>  
+<%  
+//文件上传采用cos组件上传，可更换为commons-fileupload上传，文件上传后，保存在upload文件夹  
+//获取文件上传路径  
+String saveDirectory =application.getRealPath("/")+"upload";  
+//打印上传路径信息  
+System.out.println(saveDirectory);  
+//每个文件最大50m  
+int maxPostSize = 50 * 1024 * 1024 ;  
+//采用cos缺省的命名策略，重名后加1,2,3...如果不加dfp重名将覆盖  
+DefaultFileRenamePolicy dfp = new DefaultFileRenamePolicy();  
+//response的编码为"UTF-8",同时采用缺省的文件名冲突解决策略,实现上传,如果不加dfp重名将覆盖  
+MultipartRequest multi = new MultipartRequest(request, saveDirectory, maxPostSize,"UTF-8",dfp);  
+//MultipartRequest multi = new MultipartRequest(request, saveDirectory, maxPostSize,"UTF-8");  
+//输出反馈信息  
+ Enumeration files = multi.getFileNames();  
+     while (files.hasMoreElements()) {  
+        System.err.println("ccc");  
+       String name = (String)files.nextElement();  
+       File f = multi.getFile(name);  
+       if(f!=null){  
+         String fileName = multi.getFilesystemName(name);  
+         //获取上传文件的扩展名  
+         String extName=fileName.substring(fileName.lastIndexOf(".")+1);  
+         //文件全路径  
+         String lastFileName= saveDirectory+"\\" + fileName;  
+         //获取需要转换的文件名,将路径名中的'\'替换为'/'  
+         String converfilename = saveDirectory.replaceAll("\\\\", "/")+"/"+fileName;  
+         System.out.println(converfilename);  
+         //调用转换类DocConverter,并将需要转换的文件传递给该类的构造方法  
+         DocConverter d = new DocConverter(converfilename);  
+         //调用conver方法开始转换，先执行doc2pdf()将office文件转换为pdf;再执行pdf2swf()将pdf转换为swf;  
+         d.conver();  
+         //调用getswfPath()方法，打印转换后的swf文件路径  
+         System.out.println(d.getswfPath());  
+         //生成swf相对路径，以便传递给flexpaper播放器  
+         String swfpath = "upload"+d.getswfPath().substring(d.getswfPath().lastIndexOf("/"));  
+         System.out.println(swfpath);  
+         //将相对路径放入sessio中保存  
+         session.setAttribute("swfpath", swfpath);  
+         out.println("上传的文件:"+lastFileName);  
+         out.println("文件类型"+extName);  
+         out.println("<hr>");  
+       }  
+     }  
+  
+%>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html>  
+<head>  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+<title>Insert title here</title>  
+<style>  
+    body {margin-top:100px;background:#fff;font-family: Verdana, Tahoma;}  
+    a {color:#CE4614;}  
+    #msg-box {color: #CE4614; font-size:0.9em;text-align:center;}  
+    #msg-box .logo {border-bottom:5px solid #ECE5D9;margin-bottom:20px;padding-bottom:10px;}  
+    #msg-box .title {font-size:1.4em;font-weight:bold;margin:0 0 30px 0;}  
+    #msg-box .nav {margin-top:20px;}  
+</style>  
+</head>  
+<body>  
+    <div>  
+        <form name="viewForm" id="form_swf" action="documnetView.jsp" method="POST">  
+            <input type='submit' value='预览' class='BUTTON SUBMIT'/>  
+        </form>  
+    </div>  
+</body>  
+</html>  
+(6)创建文档预览文件documentView.jsp
+[html] view plaincopy在CODE上查看代码片派生到我的代码片
+<%@ page language="java" contentType="text/html; charset=UTF-8"  
+    pageEncoding="UTF-8"%>  
+<%  
+    String swfFilePath=session.getAttribute("swfpath").toString();  
+%>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html>  
+<head>  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+<script type="text/javascript" src="js/jquery.js"></script>  
+<script type="text/javascript" src="js/flexpaper_flash.js"></script>  
+<script type="text/javascript" src="js/flexpaper_flash_debug.js"></script>  
+<style type="text/css" media="screen">   
+            html, body  { height:100%; }  
+            body { margin:0; padding:0; overflow:auto; }     
+            #flashContent { display:none; }  
+        </style>   
+  
+<title>文档在线预览系统</title>  
+</head>  
+<body>   
+        <div style="position:absolute;left:50px;top:10px;">  
+            <a id="viewerPlaceHolder" style="width:820px;height:650px;display:block"></a>  
+              
+            <script type="text/javascript">   
+                var fp = new FlexPaperViewer(     
+                         'FlexPaperViewer',  
+                         'viewerPlaceHolder', { config : {  
+                         SwfFile : escape('<%=swfFilePath%>'),  
+                         Scale : 0.6,   
+                         ZoomTransition : 'easeOut',  
+                         ZoomTime : 0.5,  
+                         ZoomInterval : 0.2,  
+                         FitPageOnLoad : true,  
+                         FitWidthOnLoad : false,  
+                         FullScreenAsMaxWindow : false,  
+                         ProgressiveLoading : false,  
+                         MinZoomSize : 0.2,  
+                         MaxZoomSize : 5,  
+                         SearchMatchAll : false,  
+                         InitViewMode : 'SinglePage',  
+                           
+                         ViewModeToolsVisible : true,  
+                         ZoomToolsVisible : true,  
+                         NavToolsVisible : true,  
+                         CursorToolsVisible : true,  
+                         SearchToolsVisible : true,  
+                          
+                         localeChain: 'en_US'  
+                         }});  
+            </script>              
+        </div>  
+</body>  
+</html>  
+7.启动tomcat，部署当前web应用
+8.地址栏输入http://localhost:8080/ctcesims/documentUpload.jsp 如下图：
+
+单击选择文件，选择您要上传的文档，笔者选择的是lunwen.doc文件，然后单击上传，处理完成后，打印如下信息，如下图所示：
+
+单击预览按钮，就会生成预览界面，如下图：
+
+9.若出现swf无法预览，请访问
+http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04a.html#119065将生成swf的文件夹设置为信任文件位置。
+由于时间仓促，以上只是简单示例，很多情况还需要进一步考虑！
+
+10.如果pdf文件过大，则需要按页生成一个个swf文件，那么在使用swftools的pdf2swf命令时，对生成的swf的文件命名采用%.swf命名即可，例如pdf2swf test.pdf d:\swf\%.swf
+
+参考资料：
+http://blog.csdn.net/iamduoluo/article/details/6727031
+http://www.cnblogs.com/star-studio/archive/2011/12/09/2282411.html#2497889

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Jzpz"> 
+
+
+	<resultMap id="Jzpz" type="com.huolong.jzpz.model.Jzpz">
+		<result property="id" column="id"/>
+		<result property="version" column="version"/>
+		<result property="pzbh" column="pzbh"/>
+		<result property="pzrq" column="pzrq"/>
+		<result property="fjs" column="fjs"/>
+		<result property="zje" column="zje"/>
+		<result property="ztai" column="ztai"/>
+		<result property="zdr" column="zdr"/>
+		<result property="shr" column="shr"/>
+		<result property="zdrq" column="zdrq"/>
+		<result property="shrq" column="shrq"/>
+		<result property="shyj" column="shyj"/>
+		<result property="jzzt" column="jzzt"/>
+		<result property="jzr" column="jzr"/>
+		<association property="cwzg" column="cwzg" select="HiUser.select_inner_HiUser"/>
+		<association property="orgs" column="orgs" select="HiOrg.select_inner_HiOrg"/>
+		<association property="creator" column="creator" select="HiUser.select_inner_HiUser"/>
+		<collection property="pzmxs" column="id" select="select_inner_Pzmxs"/>
+	</resultMap>
+    
+    <select id="select_inner_Jzpz" resultMap="Jzpz" parameterType="int">  
+       SELECT * FROM Jzpz  WHERE id = #{value}
+    </select>
+
+    <select id="select_inner_Pzmxs" resultMap="Pzmx.Pzmx" parameterType="int">   
+       SELECT * FROM Pzmx WHERE jzpz = #{value}   
+    </select>  
+  
+	<select id="getJzpz" resultMap="Jzpz">
+		select * from Jzpz WHERE id = #{id}
+	</select>
+	<select id="listJzpz" resultMap="Jzpz">#</select>
+  
+	<select id="countJzpz" resultType="int">#</select> 
+	
+	<insert id="insJzpz" parameterType="java.util.HashMap">    
+    	insert into Jzpz (id, version, pzbh, pzrq, fjs, zje, ztai, zdr, shr, cwzg, zdrq, shrq, shyj, jzzt, jzr, orgs, creator) 
+		values (#{id,jdbcType=NUMERIC}, 1, #{pzbh,jdbcType=LONGVARCHAR}, #{pzrq,jdbcType=DATE,javaType=java.util.Date}, #{fjs,jdbcType=NUMERIC}, #{zje,jdbcType=NUMERIC}, #{ztai,jdbcType=NUMERIC}, #{zdr,jdbcType=LONGVARCHAR}, #{shr,jdbcType=LONGVARCHAR}, #{cwzg,jdbcType=NUMERIC}, #{zdrq,jdbcType=DATE,javaType=java.util.Date}, #{shrq,jdbcType=DATE,javaType=java.util.Date}, #{shyj,jdbcType=LONGVARCHAR}, #{jzzt,jdbcType=LONGVARCHAR}, #{jzr,jdbcType=LONGVARCHAR}, #{orgs,jdbcType=NUMERIC}, #{creator,jdbcType=NUMERIC})
+		<selectKey resultType="int"  keyProperty="id"/>   
+	</insert>
+	
+	<update id="updateJzpz" parameterType="java.util.HashMap">
+		update Jzpz set
+            version = #{version} +1,
+			pzbh = #{pzbh,jdbcType=LONGVARCHAR},
+			pzrq = #{pzrq,jdbcType=DATE,javaType=java.util.Date},
+			fjs = #{fjs,jdbcType=NUMERIC},
+			zje = #{zje,jdbcType=NUMERIC},
+			ztai = #{ztai,jdbcType=NUMERIC},
+			zdr = #{zdr,jdbcType=LONGVARCHAR},
+			shr = #{shr,jdbcType=LONGVARCHAR},
+			cwzg = #{cwzg,jdbcType=NUMERIC},
+			zdrq = #{zdrq,jdbcType=DATE,javaType=java.util.Date},
+			shrq = #{shrq,jdbcType=DATE,javaType=java.util.Date},
+			shyj = #{shyj,jdbcType=LONGVARCHAR},
+			jzzt = #{jzzt,jdbcType=LONGVARCHAR},
+			jzr = #{jzr,jdbcType=LONGVARCHAR},
+			orgs = #{orgs,jdbcType=NUMERIC},
+			creator = #{creator,jdbcType=NUMERIC}
+    where    
+      id = #{id}    
+	</update>    
+   
+	<delete id="delJzpz" parameterType="int">    
+		delete from Jzpz where id = #{id}
+	</delete>
+
+</mapper>    

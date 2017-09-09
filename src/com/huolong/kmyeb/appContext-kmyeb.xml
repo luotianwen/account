@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Kmyeb Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.kmyeb.dao.KmyebDAOImpl" class="com.huolong.kmyeb.dao.${hi.orm.package}.KmyebDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.kmyeb.dao.KmyebDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.kmyeb.dao.KmyebDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.kmyeb.dao.KmyebDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.kmyeb.model.Kmyeb" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.kmyeb.service.impl.KmyebManagerImpl">
+                <property name="DAO" ref="com.huolong.kmyeb.dao.KmyebDAO"/>
+                <property name="modelClass" value="com.huolong.kmyeb.model.Kmyeb"/>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- ===================== Ckyetjb Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.kmyeb.dao.CkyetjbDAOImpl" class="com.huolong.kmyeb.dao.${hi.orm.package}.CkyetjbDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.kmyeb.dao.CkyetjbDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.kmyeb.dao.CkyetjbDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.kmyeb.dao.CkyetjbDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.kmyeb.model.Ckyetjb" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.kmyeb.service.impl.CkyetjbManagerImpl">
+                <property name="DAO" ref="com.huolong.kmyeb.dao.CkyetjbDAO"/>
+                <property name="modelClass" value="com.huolong.kmyeb.model.Ckyetjb"/>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- ===================== Bzhl Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.kmyeb.dao.BzhlDAOImpl" class="com.huolong.kmyeb.dao.${hi.orm.package}.BzhlDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.kmyeb.dao.BzhlDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.kmyeb.dao.BzhlDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.kmyeb.dao.BzhlDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.kmyeb.model.Bzhl" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.kmyeb.service.impl.BzhlManagerImpl">
+                <property name="DAO" ref="com.huolong.kmyeb.dao.BzhlDAO"/>
+                <property name="modelClass" value="com.huolong.kmyeb.model.Bzhl"/>
+            </bean>
+        </property>
+    </bean>
+</beans>

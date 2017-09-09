@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="account" extends="hi" >
+		<!-- ============= 科目设置对应的KjkmAction============ --> 
+		<action name="kjkm" class="com.huolong.xtsz.action.struts.KjkmAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+		<action name="kjkmSave"
+			class="com.huolong.xtsz.action.struts.KjkmAction" method="saveKjkm">
+			<result name="success" type="redirectAction">kjkmList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="kjkmEdit"
+			class="com.huolong.xtsz.action.struts.KjkmAction" method="viewKjkm">
+			<result name="success">/account/KjkmEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="kjkmView"
+			class="com.huolong.xtsz.action.struts.KjkmAction" method="viewKjkm">
+			<result name="success">/account/KjkmView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="kjkmRemove"
+			class="com.huolong.xtsz.action.struts.KjkmAction" method="removeKjkm">
+			<result name="success" type="redirectAction">kjkmList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="kjkmRemoveAll"
+			class="com.huolong.xtsz.action.struts.KjkmAction" method="removeAllKjkm">
+			<result name="success" type="redirectAction">kjkmList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="kjkmLookup"
+			class="com.huolong.xtsz.action.struts.KjkmAction" method="kjkmList">
+			<result name="success">/account/KjkmList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		<!-- ============= 上传科目余额表对应的OldkmyebAction============ --> 
+		<action name="oldkmyeb" class="com.huolong.xtsz.action.struts.OldkmyebAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="oldkmyebList"
+			class="com.huolong.xtsz.action.struts.OldkmyebAction" method="oldkmyebList">
+			<result name="success">/account/OldkmyebList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="oldkmyebSave"
+			class="com.huolong.xtsz.action.struts.OldkmyebAction" method="saveOldkmyeb">
+			<result name="success" type="redirectAction">oldkmyebList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="oldkmyebEdit"
+			class="com.huolong.xtsz.action.struts.OldkmyebAction" method="viewOldkmyeb">
+			<result name="success">/account/OldkmyebEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="oldkmyebView"
+			class="com.huolong.xtsz.action.struts.OldkmyebAction" method="viewOldkmyeb">
+			<result name="success">/account/OldkmyebView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="oldkmyebRemove"
+			class="com.huolong.xtsz.action.struts.OldkmyebAction" method="removeOldkmyeb">
+			<result name="success" type="redirectAction">oldkmyebList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="oldkmyebRemoveAll"
+			class="com.huolong.xtsz.action.struts.OldkmyebAction" method="removeAllOldkmyeb">
+			<result name="success" type="redirectAction">oldkmyebList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="oldkmyebLookup"
+			class="com.huolong.xtsz.action.struts.OldkmyebAction" method="oldkmyebList">
+			<result name="success">/account/OldkmyebList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+
+
+
+	  	<action name="zzview"
+			class="com.huolong.jzpz.action.struts.ZzAction" method="viewZz">
+			<result name="success">/zzmxz/zz.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		<action name="kmyebview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewKmyeb">
+				<result name="success">/kmyeb/kmyeb.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="mxzview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewMxz">
+				<result name="success">/zzmxz/mxz.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="yhckrjzview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewYhckrjz">
+				<result name="success">/zzmxz/yhckrjz.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="xjrjzview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewXjrjz">
+				<result name="success">/zzmxz/xjrjz.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="xjrjzview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewXjrjz">
+				<result name="success">/zzmxz/xjrjz.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="pzhzbview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewPzhzb">
+				<result name="success">/zzmxz/pzhzb.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="ckyetjbview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewCkyetjb">
+				<result name="success">/zzmxz/ckyetjb.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="syjzview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewSyjz">
+				<result name="success">/zzmxz/syjz.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="qmthview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewQmth">
+				<result name="success">/zzmxz/qmth.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="zzfzbview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewZzfzb">
+				<result name="success">/cwbb/zzfzb.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="lrbview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewLrb">
+				<result name="success">/cwbb/lrb.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="xjllbview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewXjllb">
+				<result name="success">/cwbb/xjllb.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="xjllbfzview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewXjllbfz">
+				<result name="success">/cwbb/xjllbfz.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="jzview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewjz">
+				<result name="success" type="redirectAction">syjzview</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="fjzview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewfjz">
+				<result name="success" type="redirectAction">syjzview</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="scsypzview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewscsypz">
+				<result name="success" type="redirectAction">syjzview</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="ssphview"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="viewSsph">
+			     <result name="success">/zzmxz/ssph.jsp</result>
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+			<action name="dateByQjGet"
+				class="com.huolong.jzpz.action.struts.ZzAction" method="getDateByQj">
+				<interceptor-ref name="modelParamsStack" />
+			</action>
+</package>
+</struts>

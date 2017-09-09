@@ -1,0 +1,35 @@
+ 下拉框的大小自定义
+ suggestwidth="300px"
+ 123 行增加  var $width=$input.attr('suggestwidth');
+ 
+ 135 行增加 width:$width||'138px'
+ .
+ 
+ 1科目没做
+ 2 凭证审核
+ 3报表
+ 
+INSERT INTO `menulink` (`id`, `version`, `linkUrl`, `displayRef`, `description`, `authority`, `sequence`, `menu`, `menuLinkType`, `creator`) VALUES (600501, 1, '/companySz.action', '企业信息设置', '企业信息设置', 300101, 9999.00, 100000, 0, 1);
+INSERT INTO `menulink` (`id`, `version`, `linkUrl`, `displayRef`, `description`, `authority`, `sequence`, `menu`, `menuLinkType`, `creator`) VALUES (600502, 1, '/companyQy.action', '企业启用', '企业启用', 300101, 9999.00, 100000, 0, 1);
+INSERT INTO `menulink` (`id`, `version`, `linkUrl`, `displayRef`, `description`, `authority`, `sequence`, `menu`, `menuLinkType`, `creator`) VALUES (600503, 1, '/kjkmList.action', '会计科目设置', '会计科目设置', 101200, 9999.00, 100000, 0, 1);
+
+struts2.0.14 升级到struts2.3.16.3
+
+struts2-json-plugin-2.3.16.3
+struts2-spring-plugin-2.3.16.3
+struts2-core-2.3.16.3
+xwork-core-2.3.16.3
+javassist-3.11.0.GA
+commons-lang3-3.1
+ognl-3.0.6
+hi
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+    
+    <result name="success" type="redirectAction">kjkmList</result>
+    
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+ 

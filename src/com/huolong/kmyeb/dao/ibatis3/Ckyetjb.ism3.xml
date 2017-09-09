@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Ckyetjb"> 
+
+
+	<resultMap id="Ckyetjb" type="com.huolong.kmyeb.model.Ckyetjb">
+		<result property="id" column="id"/>
+		<result property="version" column="version"/>
+		<result property="bzname" column="bzname"/>
+		<result property="qeckrj" column="qeckrj"/>
+		<result property="yhname" column="yhname"/>
+		<result property="kjqj" column="kjqj"/>
+		<result property="yhdzd" column="yhdzd"/>
+		<result property="yhysr" column="yhysr"/>
+		<result property="yhyfr" column="yhyfr"/>
+		<result property="qeysr" column="qeysr"/>
+		<result property="qeyfr" column="qeyfr"/>
+		<result property="qyye" column="qyye"/>
+		<result property="yhye" column="yhye"/>
+		<result property="ryname" column="ryname"/>
+		<association property="orgs" column="orgs" select="HiOrg.select_inner_HiOrg"/>
+		<association property="creator" column="creator" select="HiUser.select_inner_HiUser"/>
+	</resultMap>
+    
+    <select id="select_inner_Ckyetjb" resultMap="Ckyetjb" parameterType="int">  
+       SELECT * FROM Ckyetjb  WHERE id = #{value}
+    </select>
+  
+	<select id="getCkyetjb" resultMap="Ckyetjb">
+		select * from Ckyetjb WHERE id = #{id}
+	</select>
+	<select id="listCkyetjb" resultMap="Ckyetjb">#</select>
+  
+	<select id="countCkyetjb" resultType="int">#</select> 
+	
+	<insert id="insCkyetjb" parameterType="java.util.HashMap">    
+    	insert into Ckyetjb (id, version, bzname, qeckrj, yhname, kjqj, yhdzd, yhysr, yhyfr, qeysr, qeyfr, qyye, yhye, ryname, orgs, creator) 
+		values (#{id,jdbcType=NUMERIC}, 1, #{bzname,jdbcType=LONGVARCHAR}, #{qeckrj,jdbcType=LONGVARCHAR}, #{yhname,jdbcType=LONGVARCHAR}, #{kjqj,jdbcType=LONGVARCHAR}, #{yhdzd,jdbcType=LONGVARCHAR}, #{yhysr,jdbcType=LONGVARCHAR}, #{yhyfr,jdbcType=LONGVARCHAR}, #{qeysr,jdbcType=LONGVARCHAR}, #{qeyfr,jdbcType=LONGVARCHAR}, #{qyye,jdbcType=LONGVARCHAR}, #{yhye,jdbcType=LONGVARCHAR}, #{ryname,jdbcType=LONGVARCHAR}, #{orgs,jdbcType=NUMERIC}, #{creator,jdbcType=NUMERIC})
+		<selectKey resultType="int"  keyProperty="id"/>   
+	</insert>
+	
+	<update id="updateCkyetjb" parameterType="java.util.HashMap">
+		update Ckyetjb set
+            version = #{version} +1,
+			bzname = #{bzname,jdbcType=LONGVARCHAR},
+			qeckrj = #{qeckrj,jdbcType=LONGVARCHAR},
+			yhname = #{yhname,jdbcType=LONGVARCHAR},
+			kjqj = #{kjqj,jdbcType=LONGVARCHAR},
+			yhdzd = #{yhdzd,jdbcType=LONGVARCHAR},
+			yhysr = #{yhysr,jdbcType=LONGVARCHAR},
+			yhyfr = #{yhyfr,jdbcType=LONGVARCHAR},
+			qeysr = #{qeysr,jdbcType=LONGVARCHAR},
+			qeyfr = #{qeyfr,jdbcType=LONGVARCHAR},
+			qyye = #{qyye,jdbcType=LONGVARCHAR},
+			yhye = #{yhye,jdbcType=LONGVARCHAR},
+			ryname = #{ryname,jdbcType=LONGVARCHAR},
+			orgs = #{orgs,jdbcType=NUMERIC},
+			creator = #{creator,jdbcType=NUMERIC}
+    where    
+      id = #{id}    
+	</update>    
+   
+	<delete id="delCkyetjb" parameterType="int">    
+		delete from Ckyetjb where id = #{id}
+	</delete>
+
+</mapper>    

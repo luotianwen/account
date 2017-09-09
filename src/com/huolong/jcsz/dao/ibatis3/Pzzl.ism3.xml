@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Pzzl"> 
+
+
+	<resultMap id="Pzzl" type="com.huolong.jcsz.model.Pzzl">
+		<result property="id" column="id"/>
+		<result property="version" column="version"/>
+		<result property="name" column="name"/>
+		<result property="sname" column="sname"/>
+		<result property="scode" column="scode"/>
+		<association property="orgs" column="orgs" select="HiOrg.select_inner_HiOrg"/>
+		<association property="creator" column="creator" select="HiUser.select_inner_HiUser"/>
+	</resultMap>
+    
+    <select id="select_inner_Pzzl" resultMap="Pzzl" parameterType="int">  
+       SELECT * FROM Pzzl  WHERE id = #{value}
+    </select>
+  
+	<select id="getPzzl" resultMap="Pzzl">
+		select * from Pzzl WHERE id = #{id}
+	</select>
+	<select id="listPzzl" resultMap="Pzzl">#</select>
+  
+	<select id="countPzzl" resultType="int">#</select> 
+	
+	<insert id="insPzzl" parameterType="java.util.HashMap">    
+    	insert into Pzzl (id, version, name, sname, scode, orgs, creator) 
+		values (#{id,jdbcType=NUMERIC}, 1, #{name,jdbcType=LONGVARCHAR}, #{sname,jdbcType=LONGVARCHAR}, #{scode,jdbcType=LONGVARCHAR}, #{orgs,jdbcType=NUMERIC}, #{creator,jdbcType=NUMERIC})
+		<selectKey resultType="int"  keyProperty="id"/>   
+	</insert>
+	
+	<update id="updatePzzl" parameterType="java.util.HashMap">
+		update Pzzl set
+            version = #{version} +1,
+			name = #{name,jdbcType=LONGVARCHAR},
+			sname = #{sname,jdbcType=LONGVARCHAR},
+			scode = #{scode,jdbcType=LONGVARCHAR},
+			orgs = #{orgs,jdbcType=NUMERIC},
+			creator = #{creator,jdbcType=NUMERIC}
+    where    
+      id = #{id}    
+	</update>    
+   
+	<delete id="delPzzl" parameterType="int">    
+		delete from Pzzl where id = #{id}
+	</delete>
+
+</mapper>    

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="mjjz" extends="hi" >
+		<!-- ============= 银行对账单对应的YhdzdAction============ --> 
+		<action name="yhdzd" class="com.huolong.mjjz.action.struts.YhdzdAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="yhdzdList"
+			class="com.huolong.mjjz.action.struts.YhdzdAction" method="yhdzdList">
+			<result name="success">/mjjz/YhdzdList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="yhdzdSave"
+			class="com.huolong.mjjz.action.struts.YhdzdAction" method="saveYhdzd">
+			<result name="success" type="redirectAction">yhdzdList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="yhdzdEdit"
+			class="com.huolong.mjjz.action.struts.YhdzdAction" method="viewYhdzd">
+			<result name="success">/mjjz/YhdzdEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="yhdzdView"
+			class="com.huolong.mjjz.action.struts.YhdzdAction" method="viewYhdzd">
+			<result name="success">/mjjz/YhdzdView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="yhdzdRemove"
+			class="com.huolong.mjjz.action.struts.YhdzdAction" method="removeYhdzd">
+			<result name="success" type="redirectAction">yhdzdList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="yhdzdRemoveAll"
+			class="com.huolong.mjjz.action.struts.YhdzdAction" method="removeAllYhdzd">
+			<result name="success" type="redirectAction">yhdzdList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="yhdzdLookup"
+			class="com.huolong.mjjz.action.struts.YhdzdAction" method="yhdzdList">
+			<result name="success">/mjjz/YhdzdList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		<!-- ============= 银行对账单明细对应的YhdzdMXAction============ --> 
+		<action name="yhdzdMX" class="com.huolong.mjjz.action.struts.YhdzdMXAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="yhdzdMXList"
+			class="com.huolong.mjjz.action.struts.YhdzdMXAction" method="yhdzdMXList">
+			<result name="success">/mjjz/YhdzdMXList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="yhdzdMXSave"
+			class="com.huolong.mjjz.action.struts.YhdzdMXAction" method="saveYhdzdMX">
+			<result name="success" type="redirectAction">yhdzdMXList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="yhdzdMXEdit"
+			class="com.huolong.mjjz.action.struts.YhdzdMXAction" method="viewYhdzdMX">
+			<result name="success">/mjjz/YhdzdMXEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="yhdzdMXView"
+			class="com.huolong.mjjz.action.struts.YhdzdMXAction" method="viewYhdzdMX">
+			<result name="success">/mjjz/YhdzdMXView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="yhdzdMXRemove"
+			class="com.huolong.mjjz.action.struts.YhdzdMXAction" method="removeYhdzdMX">
+			<result name="success" type="redirectAction">yhdzdMXList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="yhdzdMXRemoveAll"
+			class="com.huolong.mjjz.action.struts.YhdzdMXAction" method="removeAllYhdzdMX">
+			<result name="success" type="redirectAction">yhdzdMXList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="yhdzdMXLookup"
+			class="com.huolong.mjjz.action.struts.YhdzdMXAction" method="yhdzdMXList">
+			<result name="success">/mjjz/YhdzdMXList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		<!-- ============= 收付款对应的SfkAction============ --> 
+		<action name="sfk" class="com.huolong.mjjz.action.struts.SfkAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="sfkList"
+			class="com.huolong.mjjz.action.struts.SfkAction" method="sfkList">
+			<result name="success">/mjjz/SfkList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="sfkSave"
+			class="com.huolong.mjjz.action.struts.SfkAction" method="saveSfk">
+			<result name="success" type="redirectAction">sfkList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="sfkEdit"
+			class="com.huolong.mjjz.action.struts.SfkAction" method="viewSfk">
+			<result name="success">/mjjz/SfkEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="sfkView"
+			class="com.huolong.mjjz.action.struts.SfkAction" method="viewSfk">
+			<result name="success">/mjjz/SfkView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="sfkRemove"
+			class="com.huolong.mjjz.action.struts.SfkAction" method="removeSfk">
+			<result name="success" type="redirectAction">sfkList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="sfkRemoveAll"
+			class="com.huolong.mjjz.action.struts.SfkAction" method="removeAllSfk">
+			<result name="success" type="redirectAction">sfkList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="sfkLookup"
+			class="com.huolong.mjjz.action.struts.SfkAction" method="sfkList">
+			<result name="success">/mjjz/SfkList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+
+</package>
+</struts>

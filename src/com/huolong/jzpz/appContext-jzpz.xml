@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Jzpz Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.jzpz.dao.JzpzDAOImpl" class="com.huolong.jzpz.dao.${hi.orm.package}.JzpzDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.jzpz.dao.JzpzDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.jzpz.dao.JzpzDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.jzpz.dao.JzpzDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.jzpz.model.Jzpz" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.jzpz.service.impl.JzpzManagerImpl">
+                <property name="DAO" ref="com.huolong.jzpz.dao.JzpzDAO"/>
+                <property name="modelClass" value="com.huolong.jzpz.model.Jzpz"/>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- ===================== Pzmx Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.jzpz.dao.PzmxDAOImpl" class="com.huolong.jzpz.dao.${hi.orm.package}.PzmxDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.jzpz.dao.PzmxDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.jzpz.dao.PzmxDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.jzpz.dao.PzmxDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.jzpz.model.Pzmx" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.jzpz.service.impl.PzmxManagerImpl">
+                <property name="DAO" ref="com.huolong.jzpz.dao.PzmxDAO"/>
+                <property name="modelClass" value="com.huolong.jzpz.model.Pzmx"/>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- ===================== Zhaiyao Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.jzpz.dao.ZhaiyaoDAOImpl" class="com.huolong.jzpz.dao.${hi.orm.package}.ZhaiyaoDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.jzpz.dao.ZhaiyaoDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.jzpz.dao.ZhaiyaoDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.jzpz.dao.ZhaiyaoDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.jzpz.model.Zhaiyao" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.jzpz.service.impl.ZhaiyaoManagerImpl">
+                <property name="DAO" ref="com.huolong.jzpz.dao.ZhaiyaoDAO"/>
+                <property name="modelClass" value="com.huolong.jzpz.model.Zhaiyao"/>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- ===================== Pzzh Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.jzpz.dao.PzzhDAOImpl" class="com.huolong.jzpz.dao.${hi.orm.package}.PzzhDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.jzpz.dao.PzzhDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.jzpz.dao.PzzhDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.jzpz.dao.PzzhDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.jzpz.model.Pzzh" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.jzpz.service.impl.PzzhManagerImpl">
+                <property name="DAO" ref="com.huolong.jzpz.dao.PzzhDAO"/>
+                <property name="modelClass" value="com.huolong.jzpz.model.Pzzh"/>
+            </bean>
+        </property>
+    </bean>
+</beans>

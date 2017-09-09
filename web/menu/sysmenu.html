@@ -1,0 +1,35 @@
+## displayMenu is defined in WEB-INF/classes/globalMacros.vm
+#macro( menuItem $menu $level )
+## set title
+#set ($title = $displayer.getMessage($menu.title))
+#if ($level > 0)
+#if ($level == 1)
+	#if ($menu.components.size() > 0) 
+	#if ($velocityCount >1) </ul></div>#end
+	 <div class="accordionHeader">
+	<h2><span>Folder</span>${title}</h2>
+	</div>	
+	<div class="accordionContent">
+	  <ul class="tree treeFolder">
+	#end
+#else   
+      #menuItem2($menu $title)	
+#end
+#end
+#end
+#macro(menuItem2 $menu $title)
+   #if (!$menu.url) $menu.setUrl($menu.components.get(0).url) #end      
+	#if ($menu.components.size() > 0) 
+	    #set($numItems = $menu.components.size())
+		<li><a href="javascript:void(0)">${title}</a>
+		<ul>
+	#else
+		#set($index = $menu.url.lastIndexOf("/") + 1)
+		#set($rel=$menu.url.replace(".action","").substring($index))
+		<li><a href="$!{menu.url}" target="navTab" rel="$!{rel}">${title}</a></li>
+		#if ($velocityCount == $numItems) </ul></li>#set($numItems=0)#end	
+	#end
+#end
+<div class="accordion" fillSpace="sideBar">
+#displayMenu($menu 0)</ul></div>
+</div>

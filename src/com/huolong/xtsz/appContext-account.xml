@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+   <!-- ===================== Kjkm Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.xtsz.dao.KjkmDAOImpl" class="com.huolong.xtsz.dao.${hi.orm.package}.KjkmDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.xtsz.dao.KjkmDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.xtsz.dao.KjkmDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.xtsz.dao.KjkmDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.xtsz.model.Kjkm" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.xtsz.service.impl.KjkmManagerImpl">
+                <property name="DAO" ref="com.huolong.xtsz.dao.KjkmDAO"/>
+                <property name="modelClass" value="com.huolong.xtsz.model.Kjkm"/>
+            </bean>
+        </property>
+    </bean>
+
+   <!-- ===================== Oldkmyeb Manager And DAO Configration==================== -->  
+    <bean id="com.huolong.xtsz.dao.OldkmyebDAOImpl" class="com.huolong.xtsz.dao.${hi.orm.package}.OldkmyebDAO${hi.orm.type}">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="com.huolong.xtsz.dao.OldkmyebDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.huolong.xtsz.dao.OldkmyebDAO" />
+        <property name="interceptorNames">
+            <list>
+                <value>com.huolong.xtsz.dao.OldkmyebDAOImpl</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="com.huolong.xtsz.model.Oldkmyeb" parent="txProxyTemplate">
+        <property name="target">
+            <bean class="com.huolong.xtsz.service.impl.OldkmyebManagerImpl">
+                <property name="DAO" ref="com.huolong.xtsz.dao.OldkmyebDAO"/>
+                <property name="modelClass" value="com.huolong.xtsz.model.Oldkmyeb"/>
+            </bean>
+        </property>
+    </bean>
+</beans>

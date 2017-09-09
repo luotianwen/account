@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="huolong" extends="hi" >
+		 <action name="companySz"
+			class="com.huolong.jcsz.action.struts.CompanyAction" method="companySz">
+			<result name="success">/jcsz/CompanySz.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>	
+		<action name="companySzSave"
+			class="com.huolong.jcsz.action.struts.CompanyAction" method="saveCompany">
+			<result name="success" type="redirectAction">companySz</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="companyQySave"
+			class="com.huolong.jcsz.action.struts.CompanyAction" method="saveCompany">
+				<result name="success" type="redirectAction">companyQy</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="companyQy"
+			class="com.huolong.jcsz.action.struts.CompanyAction" method="companyQy">
+			<result name="success">/jcsz/CompanyQy.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>	
+		
+		
+
+
+	   <action name="jzpzgetjzpzh"
+			class="com.huolong.jzpz.action.struts.JzpzAction" method="getjzpzh">
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+	 	<action name="jzpzPassAll"
+			class="com.huolong.jzpz.action.struts.JzpzAction" method="passAllJzpz">
+			<result name="success">/jzpz/JzpzList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		<action name="jzpzBackAll"
+			class="com.huolong.jzpz.action.struts.JzpzAction" method="backAllJzpz">
+			<result name="success">/jzpz/JzpzList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>	
+		
+	  <action name="kjkmCshList"
+			class="com.huolong.xtsz.action.struts.KjkmAction" method="kjkmList">
+			<result name="success">/account/kjkmCshList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		
+		
+		<action name="kjkmList"
+			class="com.huolong.xtsz.action.struts.KjkmAction" method="kjkmListLookup">
+			<result name="success">/account/kjkm.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		
+		<action name="kjkmList2"
+			class="com.huolong.xtsz.action.struts.KjkmAction" method="kjkmList2">
+			<result name="success">/account/KjkmList2.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		 
+			 
+			 
+		<action name="kjkmEdit2"
+			class="com.huolong.xtsz.action.struts.KjkmAction" method="viewKjkm2">
+			<result name="success">/account/KjkmEdit2.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		 <action name="kjkmLookupList2"
+			class="com.huolong.xtsz.action.struts.KjkmAction" method="kjkmLookupList2">
+			<result name="success">/account/KjkmLookupList2.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		 <action name="kjkmCsh"
+			class="com.huolong.kmyeb.action.struts.KmyebAction" method="cshkjkm">
+			<result name="success">/account/kjkmCsh.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+			 
+		<action name="kmyebSave2"
+			class="com.huolong.kmyeb.action.struts.KmyebAction" method="saveKmyeb2">
+		
+			<interceptor-ref name="modelParamsStack" />
+		</action>	
+		<action name="downloaddemo"
+			class="com.huolong.kmyeb.action.struts.KmyebDemoAction">
+			<result name="success" type="excel"/>
+			<interceptor-ref name="modelParamsStack" />
+		</action><action name="downloaddemo2"
+			class="com.huolong.kmyeb.action.struts.KmyebDemo2Action">
+			<result name="success" type="excel"/>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+</package>
+</struts>

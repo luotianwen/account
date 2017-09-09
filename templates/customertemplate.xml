@@ -1,0 +1,8 @@
+<hiGenCustomerConfig>
+ 
+<customerConfig>
+	<repeat>true</repeat>
+	<templatePathName>/customer/demo.ftl</templatePathName>
+	<outputPathName>/src/${service.packageName?replace(".", "/")}/demo/Demo${entity.entityName?cap_first}.java</outputPathName>
+</customerConfig>
+</hiGenCustomerConfig>

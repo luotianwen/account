@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="jcsz" extends="hi" >
+		<!-- ============= 企业信息对应的CompanyAction============ --> 
+		<action name="company" class="com.huolong.jcsz.action.struts.CompanyAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="companyList"
+			class="com.huolong.jcsz.action.struts.CompanyAction" method="companyList">
+			<result name="success">/jcsz/CompanyList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="companySave"
+			class="com.huolong.jcsz.action.struts.CompanyAction" method="saveCompany">
+			<result name="success" type="redirectAction">companyList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="companyEdit"
+			class="com.huolong.jcsz.action.struts.CompanyAction" method="viewCompany">
+			<result name="success">/jcsz/CompanyEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="companyView"
+			class="com.huolong.jcsz.action.struts.CompanyAction" method="viewCompany">
+			<result name="success">/jcsz/CompanyView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="companyRemove"
+			class="com.huolong.jcsz.action.struts.CompanyAction" method="removeCompany">
+			<result name="success" type="redirectAction">companyList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="companyRemoveAll"
+			class="com.huolong.jcsz.action.struts.CompanyAction" method="removeAllCompany">
+			<result name="success" type="redirectAction">companyList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="companyLookup"
+			class="com.huolong.jcsz.action.struts.CompanyAction" method="companyList">
+			<result name="success">/jcsz/CompanyList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		<!-- ============= 币种设置对应的BzszAction============ --> 
+		<action name="bzsz" class="com.huolong.jcsz.action.struts.BzszAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="bzszList"
+			class="com.huolong.jcsz.action.struts.BzszAction" method="bzszList">
+			<result name="success">/jcsz/BzszList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="bzszSave"
+			class="com.huolong.jcsz.action.struts.BzszAction" method="saveBzsz">
+			<result name="success" type="redirectAction">bzszList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="bzszEdit"
+			class="com.huolong.jcsz.action.struts.BzszAction" method="viewBzsz">
+			<result name="success">/jcsz/BzszEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="bzszView"
+			class="com.huolong.jcsz.action.struts.BzszAction" method="viewBzsz">
+			<result name="success">/jcsz/BzszView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="bzszRemove"
+			class="com.huolong.jcsz.action.struts.BzszAction" method="removeBzsz">
+			<result name="success" type="redirectAction">bzszList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="bzszRemoveAll"
+			class="com.huolong.jcsz.action.struts.BzszAction" method="removeAllBzsz">
+			<result name="success" type="redirectAction">bzszList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="bzszLookup"
+			class="com.huolong.jcsz.action.struts.BzszAction" method="bzszList">
+			<result name="success">/jcsz/BzszList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		<!-- ============= 凭证种类设置
+对应的PzzlAction============ --> 
+		<action name="pzzl" class="com.huolong.jcsz.action.struts.PzzlAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="pzzlList"
+			class="com.huolong.jcsz.action.struts.PzzlAction" method="pzzlList">
+			<result name="success">/jcsz/PzzlList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="pzzlSave"
+			class="com.huolong.jcsz.action.struts.PzzlAction" method="savePzzl">
+			<result name="success" type="redirectAction">pzzlList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="pzzlEdit"
+			class="com.huolong.jcsz.action.struts.PzzlAction" method="viewPzzl">
+			<result name="success">/jcsz/PzzlEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="pzzlView"
+			class="com.huolong.jcsz.action.struts.PzzlAction" method="viewPzzl">
+			<result name="success">/jcsz/PzzlView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="pzzlRemove"
+			class="com.huolong.jcsz.action.struts.PzzlAction" method="removePzzl">
+			<result name="success" type="redirectAction">pzzlList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="pzzlRemoveAll"
+			class="com.huolong.jcsz.action.struts.PzzlAction" method="removeAllPzzl">
+			<result name="success" type="redirectAction">pzzlList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="pzzlLookup"
+			class="com.huolong.jcsz.action.struts.PzzlAction" method="pzzlList">
+			<result name="success">/jcsz/PzzlList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		<!-- ============= 开户银行设置
+对应的YhszAction============ --> 
+		<action name="yhsz" class="com.huolong.jcsz.action.struts.YhszAction">
+			<interceptor-ref name="modelParamsStack" />
+		</action> 
+
+
+	  <action name="yhszList"
+			class="com.huolong.jcsz.action.struts.YhszAction" method="yhszList">
+			<result name="success">/jcsz/YhszList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="yhszSave"
+			class="com.huolong.jcsz.action.struts.YhszAction" method="saveYhsz">
+			<result name="success" type="redirectAction">yhszList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+					
+		<action name="yhszEdit"
+			class="com.huolong.jcsz.action.struts.YhszAction" method="viewYhsz">
+			<result name="success">/jcsz/YhszEdit.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="yhszView"
+			class="com.huolong.jcsz.action.struts.YhszAction" method="viewYhsz">
+			<result name="success">/jcsz/YhszView.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+		
+		<action name="yhszRemove"
+			class="com.huolong.jcsz.action.struts.YhszAction" method="removeYhsz">
+			<result name="success" type="redirectAction">yhszList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+		<action name="yhszRemoveAll"
+			class="com.huolong.jcsz.action.struts.YhszAction" method="removeAllYhsz">
+			<result name="success" type="redirectAction">yhszList</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>
+		
+	  	<action name="yhszLookup"
+			class="com.huolong.jcsz.action.struts.YhszAction" method="yhszList">
+			<result name="success">/jcsz/YhszList.jsp</result>
+			<interceptor-ref name="modelParamsStack" />
+		</action>		
+
+</package>
+</struts>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="Company"> 
+
+
+	<resultMap id="Company" type="com.huolong.jcsz.model.Company" extends="HiOrg.HiOrg">
+		<result property="id" column="id"/>
+		<result property="version" column="version"/>
+		<result property="gsmc" column="gsmc"/>
+		<result property="swdjh" column="swdjh"/>
+		<result property="jsjdm" column="jsjdm"/>
+		<result property="zzslx" column="zzslx"/>
+		<result property="yyzhbh" column="yyzhbh"/>
+		<result property="zzjgdm" column="zzjgdm"/>
+		<result property="zclx" column="zclx"/>
+		<result property="zczj" column="zczj"/>
+		<result property="sshy" column="sshy"/>
+		<result property="frdb" column="frdb"/>
+		<result property="lxdh" column="lxdh"/>
+		<result property="lxcz" column="lxcz"/>
+		<result property="dzyx" column="dzyx"/>
+		<result property="lxr" column="lxr"/>
+		<result property="lxrdh" column="lxrdh"/>
+		<result property="lxrdzyx" column="lxrdzyx"/>
+		<result property="lxrcz" column="lxrcz"/>
+		<result property="zcdz" column="zcdz"/>
+		<result property="jydz" column="jydz"/>
+		<result property="txdz" column="txdz"/>
+		<result property="yzbm" column="yzbm"/>
+		<result property="gsdm" column="gsdm"/>
+		<result property="qysj" column="qysj"/>
+		<result property="dqqj" column="dqqj"/>
+		<result property="cshzt" column="cshzt"/>
+		<result property="kjqj" column="kjqj"/>
+		<result property="pzsize" column="pzsize"/>
+		<result property="yhsize" column="yhsize"/>
+		<result property="ndtzjzy" column="ndtzjzy"/>
+		<association property="orgs" column="orgs" select="HiOrg.select_inner_HiOrg"/>
+		<association property="creator" column="creator" select="HiUser.select_inner_HiUser"/>
+	</resultMap>
+    
+    <select id="select_inner_Company" resultMap="Company" parameterType="int">  
+       SELECT * FROM Company  WHERE id = #{value}
+    </select>
+  
+	<select id="getCompany" resultMap="Company">
+		select * from Company WHERE id = #{id}
+	</select>
+	<select id="listCompany" resultMap="Company">#</select>
+  
+	<select id="countCompany" resultType="int">#</select> 
+	
+	<insert id="insCompany" parameterType="java.util.HashMap">    
+    	insert into Company (id, gsmc, swdjh, jsjdm, zzslx, yyzhbh, zzjgdm, zclx, zczj, sshy, frdb, lxdh, lxcz, dzyx, lxr, lxrdh, lxrdzyx, lxrcz, zcdz, jydz, txdz, yzbm, gsdm, qysj, dqqj, cshzt, kjqj, pzsize, yhsize, ndtzjzy, orgs, creator) 
+		values (#{id,jdbcType=NUMERIC}, #{gsmc,jdbcType=LONGVARCHAR}, #{swdjh,jdbcType=LONGVARCHAR}, #{jsjdm,jdbcType=LONGVARCHAR}, #{zzslx,jdbcType=NUMERIC}, #{yyzhbh,jdbcType=LONGVARCHAR}, #{zzjgdm,jdbcType=LONGVARCHAR}, #{zclx,jdbcType=NUMERIC}, #{zczj,jdbcType=LONGVARCHAR}, #{sshy,jdbcType=LONGVARCHAR}, #{frdb,jdbcType=LONGVARCHAR}, #{lxdh,jdbcType=LONGVARCHAR}, #{lxcz,jdbcType=LONGVARCHAR}, #{dzyx,jdbcType=LONGVARCHAR}, #{lxr,jdbcType=LONGVARCHAR}, #{lxrdh,jdbcType=LONGVARCHAR}, #{lxrdzyx,jdbcType=LONGVARCHAR}, #{lxrcz,jdbcType=LONGVARCHAR}, #{zcdz,jdbcType=LONGVARCHAR}, #{jydz,jdbcType=LONGVARCHAR}, #{txdz,jdbcType=LONGVARCHAR}, #{yzbm,jdbcType=LONGVARCHAR}, #{gsdm,jdbcType=LONGVARCHAR}, #{qysj,jdbcType=LONGVARCHAR}, #{dqqj,jdbcType=LONGVARCHAR}, #{cshzt,jdbcType=LONGVARCHAR}, #{kjqj,jdbcType=LONGVARCHAR}, #{pzsize,jdbcType=NUMERIC}, #{yhsize,jdbcType=NUMERIC}, #{ndtzjzy,jdbcType=NUMERIC}, #{orgs,jdbcType=NUMERIC}, #{creator,jdbcType=NUMERIC})
+		<selectKey resultType="int"  keyProperty="id"/>   
+	</insert>
+	
+	<update id="updateCompany" parameterType="java.util.HashMap">
+		update Company set
+
+			gsmc = #{gsmc,jdbcType=LONGVARCHAR},
+			swdjh = #{swdjh,jdbcType=LONGVARCHAR},
+			jsjdm = #{jsjdm,jdbcType=LONGVARCHAR},
+			zzslx = #{zzslx,jdbcType=NUMERIC},
+			yyzhbh = #{yyzhbh,jdbcType=LONGVARCHAR},
+			zzjgdm = #{zzjgdm,jdbcType=LONGVARCHAR},
+			zclx = #{zclx,jdbcType=NUMERIC},
+			zczj = #{zczj,jdbcType=LONGVARCHAR},
+			sshy = #{sshy,jdbcType=LONGVARCHAR},
+			frdb = #{frdb,jdbcType=LONGVARCHAR},
+			lxdh = #{lxdh,jdbcType=LONGVARCHAR},
+			lxcz = #{lxcz,jdbcType=LONGVARCHAR},
+			dzyx = #{dzyx,jdbcType=LONGVARCHAR},
+			lxr = #{lxr,jdbcType=LONGVARCHAR},
+			lxrdh = #{lxrdh,jdbcType=LONGVARCHAR},
+			lxrdzyx = #{lxrdzyx,jdbcType=LONGVARCHAR},
+			lxrcz = #{lxrcz,jdbcType=LONGVARCHAR},
+			zcdz = #{zcdz,jdbcType=LONGVARCHAR},
+			jydz = #{jydz,jdbcType=LONGVARCHAR},
+			txdz = #{txdz,jdbcType=LONGVARCHAR},
+			yzbm = #{yzbm,jdbcType=LONGVARCHAR},
+			gsdm = #{gsdm,jdbcType=LONGVARCHAR},
+			qysj = #{qysj,jdbcType=LONGVARCHAR},
+			dqqj = #{dqqj,jdbcType=LONGVARCHAR},
+			cshzt = #{cshzt,jdbcType=LONGVARCHAR},
+			kjqj = #{kjqj,jdbcType=LONGVARCHAR},
+			pzsize = #{pzsize,jdbcType=NUMERIC},
+			yhsize = #{yhsize,jdbcType=NUMERIC},
+			ndtzjzy = #{ndtzjzy,jdbcType=NUMERIC},
+			orgs = #{orgs,jdbcType=NUMERIC},
+			creator = #{creator,jdbcType=NUMERIC}
+    where    
+      id = #{id}    
+	</update>    
+   
+	<delete id="delCompany" parameterType="int">    
+		delete from Company where id = #{id}
+	</delete>
+
+</mapper>    
